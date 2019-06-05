@@ -1,13 +1,14 @@
 import * as React from "react";
 import { IAppState } from "../../store/Store";
 import { connect } from "react-redux";
-import { IUser, IUserState } from "../../reducers/UsersReducer";
 import { bindActionCreators, Dispatch } from "redux";
-import {
-  IUserGetAllAction,
-  IUserGetAllActionType
-} from "../../actions/UserActions";
 import { getAllUsers } from "../../actions/UserActions";
+import {
+  IUser,
+  IUserGetAllAction,
+  IUserGetAllActionType,
+  IUserState
+} from "../../types/User";
 
 interface IStateProps {
   userState: IUserState;

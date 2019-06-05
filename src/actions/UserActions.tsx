@@ -1,27 +1,7 @@
-import { ActionCreator, Dispatch } from "redux";
-import { ThunkAction } from "redux-thunk";
+import { Dispatch } from "redux";
 import { AxiosError, AxiosResponse } from "axios";
-import { IUser, IUserState } from "../reducers/UsersReducer";
 import { apiRequest } from "../generic/requests";
-
-export enum UserActionTypes {
-  GET_ALL_REQUEST = "GET_ALL_REQUEST",
-  GET_ALL_SUCCESS = "GET_ALL_SUCCESS",
-  GET_ALL_FAILED = "GET_ALL_FAILED"
-}
-
-export interface IUserGetAllAction {
-  type:
-    | UserActionTypes.GET_ALL_REQUEST
-    | UserActionTypes.GET_ALL_SUCCESS
-    | UserActionTypes.GET_ALL_FAILED;
-  payload?: IUser[] | undefined;
-}
-
-export type IUserGetAllActionType = ActionCreator<
-  ThunkAction<Promise<any>, IUserState, null, IUserGetAllAction>
->;
-export type UserActions = IUserGetAllAction;
+import { IUserGetAllActionType, UserActionTypes } from "../types/User";
 
 export const getAllUsers: IUserGetAllActionType = () => {
   return async (dispatch: Dispatch) => {

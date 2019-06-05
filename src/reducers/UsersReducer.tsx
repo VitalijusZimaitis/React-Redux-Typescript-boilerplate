@@ -1,23 +1,4 @@
-import { UserActions, UserActionTypes } from "../actions/UserActions";
-
-export interface IUser {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  phone: string;
-  website: string;
-}
-
-export interface IUserState {
-  readonly loading?: boolean;
-  readonly users: IUser[] | undefined;
-}
-
-const initialUserState: IUserState = {
-  loading: false,
-  users: []
-};
+import { initialUserState, UserActions, UserActionTypes } from "../types/User";
 
 export const usersReducer = (state = initialUserState, action: UserActions) => {
   switch (action.type) {

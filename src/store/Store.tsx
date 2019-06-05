@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, createStore, Store } from "redux";
 import thunk from "redux-thunk";
-import { IUserState, usersReducer } from "../reducers/UsersReducer";
+import { usersReducer } from "../reducers/UsersReducer";
+import { IUserState } from "../types/User";
 
 export interface IAppState {
   userState: IUserState;
