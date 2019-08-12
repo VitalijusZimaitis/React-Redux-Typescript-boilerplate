@@ -11,7 +11,9 @@ const UsersListContainer: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const fetchUsersList = () => {
-    return dispatch(getAllUsers());
+    return dispatch(getAllUsers(() => {
+        console.log('Test');
+    }));
   };
 
   return (
