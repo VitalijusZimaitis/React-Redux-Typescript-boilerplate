@@ -11,12 +11,12 @@ export interface IUser {
 }
 
 export interface IUserState {
-    readonly loading?: boolean;
+    readonly isFetching?: boolean;
     readonly users: IUser[] | undefined;
 }
 
 export const initialUserState: IUserState = {
-    loading: false,
+    isFetching: false,
     users: []
 };
 

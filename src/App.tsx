@@ -1,10 +1,10 @@
 import React from "react";
-import UsersList from "./containers/users/UsersList";
+import UsersListContainer from "./containers/UsersListContainer";
 
 const App: React.FC = () => {
   return (
     <>
-      <UsersList />
+      <UsersListContainer />
     </>
   );
 };

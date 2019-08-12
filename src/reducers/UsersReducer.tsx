@@ -5,14 +5,14 @@ export const usersReducer = (state = initialUserState, action: UserActions) => {
     case UserActionTypes.GET_ALL_REQUEST: {
       return {
         ...state,
-        loading: true
+        isFetching: true
       };
     }
 
     case UserActionTypes.GET_ALL_SUCCESS: {
       return {
         ...state,
-        loading: false,
+        isFetching: false,
         users: action.payload
       };
     }
@@ -20,7 +20,7 @@ export const usersReducer = (state = initialUserState, action: UserActions) => {
     case UserActionTypes.GET_ALL_FAILED: {
       return {
         ...state,
-        loading: false,
+        isFetching: false,
         err: true,
         message: action.payload
       };
