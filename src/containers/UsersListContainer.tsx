@@ -21,7 +21,7 @@ const UsersListContainer: React.FC = (): JSX.Element => {
       <ul className="user-container">
         {users &&
           users.map((user: IUser) => {
-            return <UserList user={user} />;
+            return <UserList key={user.id} user={user} />;
           })}
       </ul>
     </>

@@ -1,8 +1,10 @@
 import axios, { Method } from "axios";
 import { getLocalStorage } from "./helpers";
 import { config } from "./config";
+import { Dispatch } from "redux";
+import { AxiosResponse, AxiosError } from "axios";
 
-export const apiRequest = async (
+export const apiCall = async (
   method: Method,
   url: string,
   data: any = {},
@@ -19,4 +21,34 @@ export const apiRequest = async (
     params,
     url: `${config.BASE_API_URL}${url}`
   });
+};
+
+export const asyncRequest = (
+  actionType: any,
+  request: Promise<any>,
+  successCallback?: (...args: any) => any
+) => {
+  return async (dispatch: Dispatch) => {
+    dispatch({
+      type: actionType.REQUEST
+    });
+    await request
+      .then((res: AxiosResponse) => {
+        dispatch({
+          payload: res.data,
+          type: actionType.SUCCESS
+        });
+      })
+      .then(() => {
+        if (typeof successCallback === "function") {
+          return successCallback();
+        }
+      })
+      .catch((err: AxiosError) => {
+        dispatch({
+          payload: err.response,
+          type: actionType.FAILED
+        });
+      });
+  };
 };

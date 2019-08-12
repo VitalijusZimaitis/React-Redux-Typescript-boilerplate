@@ -1,15 +1,15 @@
-import { initialUserState, UserActions, UserActionTypes } from "../types/User";
+import { initialUserState, UserActions, UserGetAll } from "../types/User";
 
 export const usersReducer = (state = initialUserState, action: UserActions) => {
   switch (action.type) {
-    case UserActionTypes.GET_ALL_REQUEST: {
+    case UserGetAll.REQUEST: {
       return {
         ...state,
         isFetching: true
       };
     }
 
-    case UserActionTypes.GET_ALL_SUCCESS: {
+    case UserGetAll.SUCCESS: {
       return {
         ...state,
         isFetching: false,
@@ -17,7 +17,7 @@ export const usersReducer = (state = initialUserState, action: UserActions) => {
       };
     }
 
-    case UserActionTypes.GET_ALL_FAILED: {
+    case UserGetAll.FAILED: {
       return {
         ...state,
         isFetching: false,
