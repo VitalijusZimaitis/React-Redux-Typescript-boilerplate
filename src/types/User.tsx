@@ -18,9 +18,9 @@ export const initialUserState: IUserState = {
 };
 
 export enum UserGetAll {
-  REQUEST = "REQUEST",
-  SUCCESS = "SUCCESS",
-  FAILED = "FAILED"
+  REQUEST = "USER_GET_ALL_REQUEST",
+  SUCCESS = "USER_GET_ALL_SUCCESS",
+  FAILED = "USER_GET_ALL_FAILED"
 }
 
 export interface IUserGetAllAction {
