@@ -1,11 +1,12 @@
 import React from "react";
 import UsersListContainer from "./containers/UsersListContainer";
+import { BrowserRouter, Route } from "react-router-dom";
 
 const App: React.FC = () => {
   return (
-    <>
-      <UsersListContainer />
-    </>
+    <BrowserRouter>
+      <Route exact path={"/"} component={UsersListContainer} />
+    </BrowserRouter>
   );
 };
 
