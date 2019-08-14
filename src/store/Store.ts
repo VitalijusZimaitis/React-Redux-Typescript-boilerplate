@@ -1,4 +1,10 @@
-import { applyMiddleware, combineReducers, createStore, Store } from "redux";
+import {
+  applyMiddleware,
+  combineReducers,
+  createStore,
+  DeepPartial,
+  Store
+} from "redux";
 import thunk from "redux-thunk";
 import { usersReducer } from "../reducers/UsersReducer";
 import { IUserState } from "../types/User";
@@ -8,6 +14,10 @@ export interface IAppState {
   userState: IUserState;
 }
 
+const initialAppState: DeepPartial<IAppState> = {
+  userState: undefined
+};
+
 const rootReducer = combineReducers<IAppState>({
   userState: usersReducer
 });
@@ -15,7 +25,7 @@ const rootReducer = combineReducers<IAppState>({
 export default function configureStore(): Store<IAppState, any> {
   return createStore(
     rootReducer,
-    undefined,
+    initialAppState,
     composeWithDevTools(applyMiddleware(thunk))
   );
 }
