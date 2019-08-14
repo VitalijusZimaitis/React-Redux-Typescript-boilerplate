@@ -2,18 +2,23 @@ import * as React from "react";
 import { IAppState } from "../store/Store";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllUsers } from "../actions/UserActions";
-import { IUser } from "../types/User";
+import { IUser, IUserState } from "../types/User";
 import { UserList } from "../components/UsersList";
+import { Dispatch } from "redux";
 
 const UsersListContainer: React.FC = (): JSX.Element => {
-  const userState = useSelector((state: IAppState) => state.userState);
+  const userState: IUserState = useSelector<IAppState, IUserState>(
+    (state: IAppState) => state.userState
+  );
   const { users } = userState;
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<Dispatch<any>>();
 
   const fetchUsersList = () => {
-    return dispatch(getAllUsers(() => {
-        console.log('Test');
-    }));
+    return dispatch(
+      getAllUsers(() => {
+        console.log("Test");
+      })
+    );
   };
 
   return (
