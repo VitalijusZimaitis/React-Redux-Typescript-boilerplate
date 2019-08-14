@@ -24,10 +24,7 @@ export enum UserGetAll {
 }
 
 export interface IUserGetAllAction {
-  type:
-    | UserGetAll.REQUEST
-    | UserGetAll.SUCCESS
-    | UserGetAll.FAILED;
+  type: UserGetAll.REQUEST | UserGetAll.SUCCESS | UserGetAll.FAILED;
   payload?: IUser[] | undefined;
 }
 
