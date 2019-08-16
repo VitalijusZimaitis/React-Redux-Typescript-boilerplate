@@ -1,8 +1,9 @@
 import axios, { Method } from "axios";
 import { getLocalStorage } from "./helpers";
 import { config } from "./config";
-import { Dispatch } from "redux";
+import {ActionCreator, Dispatch} from "redux";
 import { AxiosResponse, AxiosError } from "axios";
+import { AsyncThunkAction } from "../types/Requests";
 
 export const apiCall = async (
   method: Method,
@@ -23,7 +24,7 @@ export const apiCall = async (
   });
 };
 
-export const asyncRequest = (
+export const asyncRequest: ActionCreator<AsyncThunkAction<any, any>> = (
   actionType: any,
   request: Promise<any>,
   successCallback?: (...args: any) => any

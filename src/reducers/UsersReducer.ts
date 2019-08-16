@@ -1,6 +1,15 @@
-import { initialUserState, UserActions, UserGetAll } from "../types/User";
+import {
+  initialUserState,
+  IUserState,
+  UserActions,
+  UserGetAll
+} from "../types/User";
+import { Reducer } from "redux";
 
-export const usersReducer = (state = initialUserState, action: UserActions) => {
+export const usersReducer: Reducer<IUserState, UserActions> = (
+  state = initialUserState,
+  action
+) => {
   switch (action.type) {
     case UserGetAll.REQUEST: {
       return {
