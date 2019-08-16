@@ -1,11 +1,16 @@
 import * as React from "react";
-import { IUser } from "../types/User";
+import { IUser, IUserState } from "../types/User";
 
-interface IUsersListProps {
-  user: IUser;
-}
+interface IUsersListProps extends IUserState {}
 
 export const UserList: React.FC<IUsersListProps> = props => {
-  const { user } = props;
-  return <li key={user.name}>{user.name}</li>;
+  const { users } = props;
+  return (
+    <>
+      {users &&
+        users.map((user: IUser) => {
+          return <li key={user.name}>{user.name}</li>;
+        })}
+    </>
+  );
 };

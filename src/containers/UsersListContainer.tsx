@@ -2,16 +2,16 @@ import * as React from "react";
 import { IAppState } from "../store/Store";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllUsers } from "../actions/UserActions";
-import { IUser, IUserGetAllAction, IUserState } from "../types/User";
+import { IUserGetAllAction, IUserState } from "../types/User";
 import { UserList } from "../components/UsersList";
 import { Dispatch } from "redux";
 import { AsyncThunkAction } from "../types/Requests";
+import Loading from "../components/Loading";
 
 const UsersListContainer: React.FC = (): JSX.Element => {
   const userState: IUserState = useSelector<IAppState, IUserState>(
     (state: IAppState) => state.userState
   );
-  const { users } = userState;
   const dispatch = useDispatch<Dispatch<any>>();
 
   const fetchUsersList = (): AsyncThunkAction<
@@ -28,12 +28,9 @@ const UsersListContainer: React.FC = (): JSX.Element => {
   return (
     <>
       <button onClick={fetchUsersList}>Fetch Users</button>
-      {userState && userState.isFetching && <h1>Loading</h1>}
+      {userState && userState.isFetching && <Loading />}
       <ul className="user-container">
-        {users &&
-          users.map((user: IUser) => {
-            return <UserList key={user.id} user={user} />;
-          })}
+        <UserList users={userState.users} />
       </ul>
     </>
   );
