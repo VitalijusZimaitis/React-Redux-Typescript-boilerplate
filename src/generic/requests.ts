@@ -1,7 +1,7 @@
 import axios, { Method } from "axios";
 import { getLocalStorage } from "./helpers";
 import { config } from "./config";
-import {ActionCreator, Dispatch} from "redux";
+import { ActionCreator, Dispatch } from "redux";
 import { AxiosResponse, AxiosError } from "axios";
 import { AsyncThunkAction } from "../types/Requests";
 
