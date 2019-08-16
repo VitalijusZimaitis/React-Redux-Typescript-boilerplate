@@ -1,4 +1,5 @@
 import {
+  AnyAction,
   applyMiddleware,
   combineReducers,
   createStore,
@@ -22,7 +23,7 @@ const rootReducer = combineReducers<IAppState>({
   userState: usersReducer
 });
 
-export default function configureStore(): Store<IAppState, any> {
+export default function configureStore(): Store<IAppState, AnyAction> {
   return createStore(
     rootReducer,
     initialAppState,

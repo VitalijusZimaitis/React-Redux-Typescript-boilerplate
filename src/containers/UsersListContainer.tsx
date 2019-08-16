@@ -7,6 +7,7 @@ import { UserList } from "../components/UsersList";
 import { Dispatch } from "redux";
 import { AsyncThunkAction } from "../types/Requests";
 import Loading from "../components/Loading";
+import { useEffect } from "react";
 
 const UsersListContainer: React.FC = (): JSX.Element => {
   const userState: IUserState = useSelector<IAppState, IUserState>(
@@ -25,13 +26,18 @@ const UsersListContainer: React.FC = (): JSX.Element => {
     );
   };
 
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
+
   return (
     <>
       <button onClick={fetchUsersList}>Fetch Users</button>
-      {userState && userState.isFetching && <Loading />}
-      <ul className="user-container">
+      {userState && userState.isFetching ? (
+        <Loading />
+      ) : (
         <UserList users={userState.users} />
-      </ul>
+      )}
     </>
   );
 };
