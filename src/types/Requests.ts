@@ -8,3 +8,5 @@ export type AsyncThunkAction<T, U> = ThunkAction<
   IAppState,
   Action<U>
 >;
+
+export type callbackFunction<T = any, S = any> = (...args: T[]) => S;
