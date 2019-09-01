@@ -2,7 +2,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import { ActionCreator, Dispatch } from "redux";
 import { AsyncThunkAction } from "../types/Requests";
 
-export abstract class Action {
+export class Action {
   static create: ActionCreator<AsyncThunkAction<any, any>> = (
     actionType: any,
     request: Promise<any>,

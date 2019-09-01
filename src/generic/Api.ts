@@ -2,7 +2,7 @@ import axios, { Method } from "axios";
 import { LocalStorage } from "./LocalStorage";
 import { config } from "../config";
 
-export abstract class Api {
+export class Api {
   static call = async (
     method: Method,
     url: string,
