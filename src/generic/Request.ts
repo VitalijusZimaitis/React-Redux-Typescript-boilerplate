@@ -2,7 +2,7 @@ import axios from "axios";
 import { LocalStorage } from "./LocalStorage";
 import { config } from "../config";
 
-export class Api {
+export class Request {
   protected request: {} = {};
   protected headers: {} = {
     "Content-Type": "application/json"
