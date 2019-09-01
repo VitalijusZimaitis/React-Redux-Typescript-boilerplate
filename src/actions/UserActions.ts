@@ -6,5 +6,5 @@ import { Api } from "../generic/Api";
 export const getAllUsers = (
   callback?: (...args: any) => any
 ): AsyncThunkAction<IUserState, IUserGetAllAction> => {
-  return Action.generate(UserGetAll, Api.call("GET", `/users`), callback);
+  return Action.create(UserGetAll, Api.call("GET", `/users`), callback);
 };

@@ -3,7 +3,7 @@ import { ActionCreator, Dispatch } from "redux";
 import { AsyncThunkAction } from "../types/Requests";
 
 export abstract class Action {
-  static generate: ActionCreator<AsyncThunkAction<any, any>> = (
+  static create: ActionCreator<AsyncThunkAction<any, any>> = (
     actionType: any,
     request: Promise<any>,
     successCallback?: (...args: any) => any
