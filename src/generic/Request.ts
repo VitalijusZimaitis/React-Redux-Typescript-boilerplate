@@ -38,6 +38,27 @@ export class Request {
     return this;
   };
 
+  public params = (params: any) => {
+    this.request = {
+      ...this.request,
+      params
+    };
+
+    return this;
+  };
+
+  public header = (header: {}) => {
+    this.request = {
+      ...this.request,
+      headers: {
+        ...this.headers,
+        header
+      }
+    };
+
+    return this;
+  };
+
   public get = async (): Promise<any> => {
     return await axios.request({
       ...this.request,
