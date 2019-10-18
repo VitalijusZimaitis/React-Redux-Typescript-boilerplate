@@ -24,7 +24,7 @@ export class Action<T = any, S = any> {
             type: this.actionType.SUCCESS
           });
           if(typeof callback === "function") {
-            callback({ ...res, error: false });
+            callback({ ...res, success: true });
           }
         })
         .catch((err: AxiosError) => {

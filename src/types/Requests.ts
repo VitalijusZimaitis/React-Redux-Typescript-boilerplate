@@ -1,7 +1,7 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { IAppState } from "../store/Store";
-import { AxiosResponse, AxiosError } from 'axios';
+import { AxiosResponse, AxiosError } from "axios";
 
 export type AsyncThunkAction<T, U> = ThunkAction<
   Promise<any>,
@@ -11,4 +11,7 @@ export type AsyncThunkAction<T, U> = ThunkAction<
 >;
 
 export type callbackFunction<T = any, S = any> = (...args: T[]) => S;
-export type callbackParam = AxiosResponse | AxiosError;
+export interface callbackParam extends AxiosResponse, AxiosError {
+  success?: boolean;
+  error?: boolean;
+}

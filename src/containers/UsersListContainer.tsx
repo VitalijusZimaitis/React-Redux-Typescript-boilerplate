@@ -20,7 +20,9 @@ const UsersListContainer: React.FC = (): JSX.Element => {
   const fetchUsersList = () => {
     return dispatch(
       userActions.getAllUsers((data: callbackParam) => {
-        console.log(data);
+        if (data.success) {
+          console.log(data);
+        }
         setTitle("React App Updated");
       })
     );
