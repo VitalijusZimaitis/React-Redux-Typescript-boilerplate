@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 import { useEffect, useState } from "react";
 import { UserActions } from "../actions/UserActions";
 import { callbackParam } from "../types/Requests";
+import { User } from "../models/User";
 
 const UsersListContainer: React.FC = (): JSX.Element => {
   const userState: IUserState = useSelector<IAppState, IUserState>(
@@ -16,31 +17,31 @@ const UsersListContainer: React.FC = (): JSX.Element => {
   const dispatch = useDispatch<Dispatch<any>>();
   const [title, setTitle] = useState<string>("React App");
   const userActions: UserActions = new UserActions();
+  const [users, setUsers] = useState<User>(new User(userState));
 
   const fetchUsersList = () => {
     return dispatch(
       userActions.getAllUsers((data: callbackParam) => {
         if (data.success) {
-          console.log(data);
+          setTitle("React App - Success");
         }
-        setTitle("React App Updated");
       })
     );
   };
 
   useEffect(() => {
-    dispatch(userActions.getAllUsers());
-  }, [dispatch]);
+    fetchUsersList();
+  }, []);
+
+  useEffect(() => {
+    setUsers(new User(userState));
+  }, [userState]);
 
   return (
     <>
       <h1>{title}</h1>
       <button onClick={fetchUsersList}>Fetch Users</button>
-      {userState && userState.isFetching ? (
-        <Loading />
-      ) : (
-        <UserList users={userState.users} />
-      )}
+      {users && users.loading() ? <Loading /> : <UserList data={users.all()} />}
     </>
   );
 };

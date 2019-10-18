@@ -1,3 +1,6 @@
+import { IModel } from "./Model";
+import { AxiosResponse, AxiosError } from "axios";
+
 export interface IUser {
   id: number;
   name: string;
@@ -7,14 +10,11 @@ export interface IUser {
   website: string;
 }
 
-export interface IUserState {
-  readonly isFetching?: boolean;
-  readonly users: IUser[] | undefined;
-}
+export interface IUserState extends IModel {}
 
 export const initialUserState: IUserState = {
   isFetching: false,
-  users: []
+  data: []
 };
 
 export enum UserGetAll {
@@ -25,7 +25,7 @@ export enum UserGetAll {
 
 export interface IUserGetAllAction {
   type: UserGetAll.REQUEST | UserGetAll.SUCCESS | UserGetAll.FAILED;
-  payload?: IUser[] | undefined;
+  payload: AxiosResponse & AxiosError;
 }
 
 export type UserActions = IUserGetAllAction;
