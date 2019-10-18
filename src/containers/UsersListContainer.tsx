@@ -1,13 +1,13 @@
 import * as React from "react";
 import { IAppState } from "../store/Store";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllUsers } from "../actions/UserActions";
-import { IUserGetAllAction, IUserState } from "../types/User";
+import { IUserState } from "../types/User";
 import { UserList } from "../components/UsersList";
 import { Dispatch } from "redux";
-import { AsyncThunkAction } from "../types/Requests";
 import Loading from "../components/Loading";
 import { useEffect, useState } from "react";
+import { UserActions } from "../actions/UserActions";
+import { callbackParam } from "../types/Requests";
 
 const UsersListContainer: React.FC = (): JSX.Element => {
   const userState: IUserState = useSelector<IAppState, IUserState>(
@@ -15,20 +15,19 @@ const UsersListContainer: React.FC = (): JSX.Element => {
   );
   const dispatch = useDispatch<Dispatch<any>>();
   const [title, setTitle] = useState<string>("React App");
+  const userActions: UserActions = new UserActions();
 
-  const fetchUsersList = (): AsyncThunkAction<
-    IUserState,
-    IUserGetAllAction
-  > => {
+  const fetchUsersList = () => {
     return dispatch(
-      getAllUsers(() => {
+      userActions.getAllUsers((data: callbackParam) => {
+        console.log(data);
         setTitle("React App Updated");
       })
     );
   };
 
   useEffect(() => {
-    dispatch(getAllUsers());
+    dispatch(userActions.getAllUsers());
   }, [dispatch]);
 
   return (
