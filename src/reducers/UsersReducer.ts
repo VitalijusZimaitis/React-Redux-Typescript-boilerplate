@@ -22,17 +22,21 @@ export const usersReducer: Reducer<IUserState, UserActions> = (
       return {
         ...state,
         isFetching: false,
-        users: action.payload
+        data: action.payload
       };
     }
 
     case UserGetAll.FAILED: {
-      return {
-        ...state,
-        isFetching: false,
-        err: true,
-        message: action.payload
-      };
+      if (action.payload.response) {
+        return {
+          ...state,
+          isFetching: false,
+          err: true,
+          message: action.payload.response.data
+        };
+      }
+
+      return state;
     }
 
     default:

@@ -41,7 +41,11 @@ const UsersListContainer: React.FC = (): JSX.Element => {
     <>
       <h1>{title}</h1>
       <button onClick={fetchUsersList}>Fetch Users</button>
-      {users && users.loading() ? <Loading /> : <UserList data={users.all()} />}
+      {users && users.loading() ? (
+        <Loading />
+      ) : (
+        <UserList data={users.all()} />
+      )}
     </>
   );
 };
