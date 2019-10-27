@@ -7,6 +7,9 @@ export class UserActions {
   public getAllUsers = (
     callback?: callbackFunction
   ): AsyncThunkAction<IUserState, IUserGetAllAction> => {
-    return new Action(UserGetAll).create(new Request(`/users`).get(), callback);
+    return new Action(UserGetAll, "userState").create(
+      new Request(`/users`).get(),
+      callback
+    );
   };
 }

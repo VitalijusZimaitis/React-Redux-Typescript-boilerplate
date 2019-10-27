@@ -10,8 +10,4 @@ export class BaseModel {
   public all() {
     return this.state.data;
   }
-
-  public loading() {
-    return this.state.isFetching;
-  }
 }

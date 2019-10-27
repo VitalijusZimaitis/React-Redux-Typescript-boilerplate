@@ -11,17 +11,9 @@ export const usersReducer: Reducer<IUserState, UserActions> = (
   action
 ) => {
   switch (action.type) {
-    case UserGetAll.REQUEST: {
-      return {
-        ...state,
-        isFetching: true
-      };
-    }
-
     case UserGetAll.SUCCESS: {
       return {
         ...state,
-        isFetching: false,
         data: action.payload
       };
     }
@@ -30,7 +22,6 @@ export const usersReducer: Reducer<IUserState, UserActions> = (
       if (action.payload.response) {
         return {
           ...state,
-          isFetching: false,
           err: true,
           message: action.payload.response.data
         };

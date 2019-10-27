@@ -13,7 +13,6 @@ export interface IUser {
 export interface IUserState extends IModel {}
 
 export const initialUserState: IUserState = {
-  isFetching: false,
   data: []
 };
 
