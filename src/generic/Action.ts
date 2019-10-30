@@ -6,9 +6,9 @@ export class Action<T = any, S = any> {
   private actionType: any;
   private readonly action: any;
 
-  constructor(actionType: any, actionFor: any) {
+  constructor(actionType: any, loaderName: string) {
     this.actionType = actionType;
-    this.action = actionFor;
+    this.action = loaderName;
   }
 
   create: ActionCreator<AsyncThunkAction<T, S>> = (
