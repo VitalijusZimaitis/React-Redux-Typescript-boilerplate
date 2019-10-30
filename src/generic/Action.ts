@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { ActionCreator, Dispatch } from "redux";
-import { AsyncThunkAction, callbackFunction } from "../types/Requests";
+import { AsyncThunkAction, TActionCallback } from "../types/Requests";
 
 export class Action<T = any, S = any> {
   private actionType: any;
@@ -13,7 +13,7 @@ export class Action<T = any, S = any> {
 
   create: ActionCreator<AsyncThunkAction<T, S>> = (
     request: Promise<any>,
-    callback: callbackFunction
+    callback: TActionCallback
   ) => {
     return async (dispatch: Dispatch) => {
       dispatch({
