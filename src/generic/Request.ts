@@ -16,7 +16,7 @@ export class Request<TRequestData = any, TResponse extends {} = {}> {
     };
   }
 
-  public data = (data: TRequestData | null = {} as TRequestData) => {
+  public data = (data: TRequestData | null = {} as TRequestData): Request => {
     this.request = {
       ...this.request,
       data
@@ -25,7 +25,7 @@ export class Request<TRequestData = any, TResponse extends {} = {}> {
     return this;
   };
 
-  public authorized = (auth?: boolean) => {
+  public authorized = (auth?: boolean): Request => {
     if (auth) {
       this.request = {
         ...this.request,
@@ -39,7 +39,7 @@ export class Request<TRequestData = any, TResponse extends {} = {}> {
     return this;
   };
 
-  public params = (params: any) => {
+  public params = (params: any): Request => {
     this.request = {
       ...this.request,
       params
@@ -48,7 +48,7 @@ export class Request<TRequestData = any, TResponse extends {} = {}> {
     return this;
   };
 
-  public header = (header: {}) => {
+  public header = (header: {}): Request => {
     this.request = {
       ...this.request,
       headers: {
