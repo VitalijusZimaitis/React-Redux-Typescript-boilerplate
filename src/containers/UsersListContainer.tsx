@@ -15,7 +15,7 @@ const UsersListContainer: React.FC = (): JSX.Element => {
   const userState: IUserState = useSelector<IAppState, IUserState>(
     (state: IAppState) => state.userState
   );
-  const [isLoading] = useLoader("userState");
+  const [loading] = useLoader();
   const dispatch = useDispatch<Dispatch<any>>();
   const [title, setTitle] = useState<string>("React App");
   const userActions: UserActions = new UserActions();
@@ -46,7 +46,11 @@ const UsersListContainer: React.FC = (): JSX.Element => {
     <>
       <h1>{title}</h1>
       <button onClick={fetchUsersList}>Fetch Users</button>
-      {users && isLoading ? <Loading /> : <UserList data={users.all()} />}
+      {users && loading.userState ? (
+        <Loading />
+      ) : (
+        <UserList data={users.all()} />
+      )}
     </>
   );
 };
