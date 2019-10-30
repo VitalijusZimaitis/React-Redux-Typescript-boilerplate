@@ -1,8 +1,9 @@
 import axios from "axios";
 import { LocalStorage } from "./LocalStorage";
 import { config } from "../config";
+import { AxiosResponse } from "axios";
 
-export class Request {
+export class Request<TRequestData = any, TResponse extends {} = {}> {
   protected request: {} = {};
   protected headers: {} = {
     "Content-Type": "application/json"
@@ -15,7 +16,7 @@ export class Request {
     };
   }
 
-  public data = (data: any = {}) => {
+  public data = (data: TRequestData | null = {} as TRequestData) => {
     this.request = {
       ...this.request,
       data
@@ -59,14 +60,14 @@ export class Request {
     return this;
   };
 
-  public get = async (): Promise<any> => {
+  public get = async (): Promise<AxiosResponse<TResponse>> => {
     return await axios.request({
       ...this.request,
       method: "GET"
     });
   };
 
-  public post = async (): Promise<any> => {
+  public post = async (): Promise<AxiosResponse<TResponse>> => {
     return await axios.request({
       ...this.request,
       method: "POST"

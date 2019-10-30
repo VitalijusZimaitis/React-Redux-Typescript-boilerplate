@@ -1,13 +1,17 @@
 import { IModel } from "./Model";
 import { AxiosResponse, AxiosError } from "axios";
 
-export interface IUser {
+export interface TApiUserEntity {
   id: number;
   name: string;
   username: string;
   email: string;
   phone: string;
   website: string;
+}
+
+export interface TApiUser {
+  users: TApiUserEntity[];
 }
 
 export interface IUserState extends IModel {}
