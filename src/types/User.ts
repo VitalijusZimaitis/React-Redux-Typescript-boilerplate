@@ -10,10 +10,6 @@ export interface TApiUserEntity {
   website: string;
 }
 
-export interface TApiUser {
-  users: TApiUserEntity[];
-}
-
 export interface IUserState extends IModel {}
 
 export const initialUserState: IUserState = {
