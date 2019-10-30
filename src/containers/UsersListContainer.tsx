@@ -7,7 +7,7 @@ import { Dispatch } from "redux";
 import Loading from "../components/Loading";
 import { useEffect, useState } from "react";
 import { UserActions } from "../actions/UserActions";
-import { AsyncThunkAction, callbackParam } from "../types/Requests";
+import { AsyncThunkAction, TApiCallback } from "../types/Requests";
 import { User } from "../models/User";
 import { useLoader } from "../hooks/useLoader";
 
@@ -26,7 +26,7 @@ const UsersListContainer: React.FC = (): JSX.Element => {
     IUserGetAllAction
   > => {
     return dispatch(
-      userActions.getAllUsers((data: callbackParam) => {
+      userActions.getAllUsers((data: TApiCallback) => {
         if (data.success) {
           setTitle("React App - Success");
         }
