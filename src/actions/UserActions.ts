@@ -11,7 +11,7 @@ import { Request } from "../generic/Request";
 export class UserActions {
   private loaderName: string = "userState";
 
-  public getAllUsers = (
+  getAllUsers = (
     callback?: TActionCallback
   ): AsyncThunkAction<IUserState, IUserGetAllAction> => {
     return new Action(UserGetAll, this.loaderName).create(

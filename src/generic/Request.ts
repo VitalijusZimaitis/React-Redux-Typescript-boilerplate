@@ -9,14 +9,14 @@ export class Request<TRequestData = any, TResponse extends {} = {}> {
     "Content-Type": "application/json"
   };
 
-  public constructor(url: string) {
+  constructor(url: string) {
     this.request = {
       ...this.request,
       url: `${config.BASE_API_URL}${url}`
     };
   }
 
-  public data = (data: TRequestData | null = {} as TRequestData): Request => {
+  data = (data: TRequestData | null = {} as TRequestData): Request => {
     this.request = {
       ...this.request,
       data
@@ -25,7 +25,7 @@ export class Request<TRequestData = any, TResponse extends {} = {}> {
     return this;
   };
 
-  public authorized = (auth?: boolean): Request => {
+  authorized = (auth?: boolean): Request => {
     if (auth) {
       this.request = {
         ...this.request,
@@ -39,7 +39,7 @@ export class Request<TRequestData = any, TResponse extends {} = {}> {
     return this;
   };
 
-  public params = (params: any): Request => {
+  params = (params: any): Request => {
     this.request = {
       ...this.request,
       params
@@ -48,7 +48,7 @@ export class Request<TRequestData = any, TResponse extends {} = {}> {
     return this;
   };
 
-  public header = (header: {}): Request => {
+  header = (header: {}): Request => {
     this.request = {
       ...this.request,
       headers: {
@@ -60,14 +60,14 @@ export class Request<TRequestData = any, TResponse extends {} = {}> {
     return this;
   };
 
-  public get = async (): Promise<AxiosResponse<TResponse>> => {
+  get = async (): Promise<AxiosResponse<TResponse>> => {
     return await axios.request({
       ...this.request,
       method: "GET"
     });
   };
 
-  public post = async (): Promise<AxiosResponse<TResponse>> => {
+  post = async (): Promise<AxiosResponse<TResponse>> => {
     return await axios.request({
       ...this.request,
       method: "POST"
