@@ -1,14 +1,16 @@
 import * as React from "react";
-import { TApiUserEntity, IUserState } from "../types/User";
+import { TApiUserEntity } from "../types/User";
 
-interface IUsersListProps extends IUserState {}
+interface IUsersListProps {
+  users: TApiUserEntity[];
+}
 
 export const UserList: React.FC<IUsersListProps> = props => {
-  const { data } = props;
+  const { users } = props;
   return (
     <ul className="user-container">
-      {data &&
-        data.map((user: TApiUserEntity) => {
+      {users &&
+        users.map((user: TApiUserEntity) => {
           return <li key={user.name}>{user.name}</li>;
         })}
     </ul>

@@ -1,4 +1,3 @@
-import { IModel } from "./Model";
 import { AxiosResponse, AxiosError } from "axios";
 
 export interface TApiUserEntity {
@@ -10,10 +9,12 @@ export interface TApiUserEntity {
   website: string;
 }
 
-export interface IUserState extends IModel {}
+export interface TUserState {
+  readonly data?: Array<TApiUserEntity>;
+}
 
-export const initialUserState: IUserState = {
-  data: []
+export const initialUserState: TUserState = {
+  data: undefined
 };
 
 export enum UserGetAll {
@@ -22,9 +23,17 @@ export enum UserGetAll {
   FAILED = "USER_GET_ALL_FAILED"
 }
 
-export interface IUserGetAllAction {
-  type: UserGetAll.REQUEST | UserGetAll.SUCCESS | UserGetAll.FAILED;
-  payload: AxiosResponse & AxiosError;
-}
+export type TUserGetAllAction =
+  | {
+      type: UserGetAll.REQUEST;
+    }
+  | {
+      type: UserGetAll.SUCCESS;
+      payload: AxiosResponse<Array<TApiUserEntity>>;
+    }
+  | {
+      type: UserGetAll.FAILED;
+      payload: AxiosError;
+    };
 
-export type UserActions = IUserGetAllAction;
+export type TUserActions = TUserGetAllAction;

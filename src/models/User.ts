@@ -1,10 +1,10 @@
-import { IUserState } from "../types/User";
+import { TUserState } from "../types/User";
 import { BaseModel } from "./BaseModel";
 
 export class User extends BaseModel {
-  private userState: IUserState;
+  private userState: TUserState;
 
-  constructor(userState: IUserState) {
+  constructor(userState: TUserState) {
     super(userState);
     this.userState = userState;
   }

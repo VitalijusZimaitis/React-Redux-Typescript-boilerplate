@@ -1,7 +1,7 @@
 import { Action } from "../generic/Action";
 import {
-  IUserGetAllAction,
-  IUserState,
+  TUserGetAllAction,
+  TUserState,
   TApiUserEntity,
   UserGetAll
 } from "../types/User";
@@ -13,7 +13,7 @@ export class UserActions {
 
   getAllUsers = (
     callback?: TActionCallback
-  ): AsyncThunkAction<IUserState, IUserGetAllAction> => {
+  ): AsyncThunkAction<TUserState, TUserGetAllAction> => {
     return new Action(UserGetAll, this.loaderName).create(
       new Request<null, TApiUserEntity[]>(`/users`).get(),
       callback

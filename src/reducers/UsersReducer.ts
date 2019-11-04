@@ -1,12 +1,12 @@
 import {
   initialUserState,
-  IUserState,
-  UserActions,
+  TUserActions,
+  TUserState,
   UserGetAll
 } from "../types/User";
 import { Reducer } from "redux";
 
-export const usersReducer: Reducer<IUserState, UserActions> = (
+export const usersReducer: Reducer<TUserState, TUserActions> = (
   state = initialUserState,
   action
 ) => {
@@ -14,7 +14,7 @@ export const usersReducer: Reducer<IUserState, UserActions> = (
     case UserGetAll.SUCCESS: {
       return {
         ...state,
-        data: action.payload
+        data: action.payload.data
       };
     }
 
@@ -22,7 +22,6 @@ export const usersReducer: Reducer<IUserState, UserActions> = (
       if (action.payload.response) {
         return {
           ...state,
-          err: true,
           message: action.payload.response.data
         };
       }

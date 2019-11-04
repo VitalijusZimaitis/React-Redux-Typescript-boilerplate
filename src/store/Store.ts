@@ -8,12 +8,12 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 import { usersReducer } from "../reducers/UsersReducer";
-import { IUserState } from "../types/User";
+import { TUserState } from "../types/User";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { loadingReducer } from "../reducers/LoadingReducer";
 
 export interface IAppState {
-  userState: IUserState;
+  userState: TUserState;
   loading: any;
 }
 

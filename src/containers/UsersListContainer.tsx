@@ -1,18 +1,18 @@
 import * as React from "react";
 import { IAppState } from "../store/Store";
 import { useSelector, useDispatch } from "react-redux";
-import { IUserGetAllAction, IUserState } from "../types/User";
+import { TUserState } from "../types/User";
 import { UserList } from "../components/UsersList";
 import { Dispatch } from "redux";
 import Loading from "../components/Loading";
 import { useEffect, useState } from "react";
 import { UserActions } from "../actions/UserActions";
-import { AsyncThunkAction, TApiCallback } from "../types/Requests";
+import { TApiCallback } from "../types/Requests";
 import { User } from "../models/User";
 import { useLoader } from "../hooks/useLoader";
 
 const UsersListContainer: React.FC = (): JSX.Element => {
-  const userState: IUserState = useSelector<IAppState, IUserState>(
+  const userState: TUserState = useSelector<IAppState, TUserState>(
     (state: IAppState) => state.userState
   );
   const [loading] = useLoader();
@@ -21,10 +21,7 @@ const UsersListContainer: React.FC = (): JSX.Element => {
   const userActions: UserActions = new UserActions();
   const [users, setUsers] = useState<User>(new User(userState));
 
-  const fetchUsersList = (): AsyncThunkAction<
-    IUserState,
-    IUserGetAllAction
-  > => {
+  const fetchUsersList = () => {
     return dispatch(
       userActions.getAllUsers((data: TApiCallback) => {
         if (data.success) {
@@ -49,7 +46,7 @@ const UsersListContainer: React.FC = (): JSX.Element => {
       {users && loading.userState ? (
         <Loading />
       ) : (
-        <UserList data={users.all()} />
+        <UserList users={users.all()} />
       )}
     </>
   );
