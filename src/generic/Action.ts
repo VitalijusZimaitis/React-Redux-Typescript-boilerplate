@@ -23,7 +23,7 @@ export class Action<T = any, S = any> {
       await request
         .then((res: AxiosResponse) => {
           dispatch({
-            payload: res.data,
+            payload: res,
             type: this.actionType.SUCCESS,
             action: this.action
           });
@@ -33,7 +33,7 @@ export class Action<T = any, S = any> {
         })
         .catch((err: AxiosError) => {
           dispatch({
-            payload: err.response,
+            payload: err,
             type: this.actionType.FAILED,
             action: this.action
           });
