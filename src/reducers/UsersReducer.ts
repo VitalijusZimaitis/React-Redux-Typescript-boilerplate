@@ -18,17 +18,6 @@ export const usersReducer: Reducer<TUserState, TUserActions> = (
       };
     }
 
-    case UserGetAll.FAILED: {
-      if (action.payload.response) {
-        return {
-          ...state,
-          message: action.payload.response.data
-        };
-      }
-
-      return state;
-    }
-
     default:
       return state;
   }

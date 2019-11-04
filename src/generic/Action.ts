@@ -32,6 +32,7 @@ export class Action<T = any, S = any> {
           }
         })
         .catch((err: AxiosError) => {
+          console.log(err);
           dispatch({
             payload: err,
             type: this.actionType.FAILED,

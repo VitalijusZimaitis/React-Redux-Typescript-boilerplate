@@ -10,12 +10,14 @@ import { UserActions } from "../actions/UserActions";
 import { TApiCallback } from "../types/Requests";
 import { User } from "../models/User";
 import { useLoader } from "../hooks/useLoader";
+import { useErrorHandler } from "../hooks/useErrorHandler";
 
 const UsersListContainer: React.FC = (): JSX.Element => {
   const userState: TUserState = useSelector<IAppState, TUserState>(
     (state: IAppState) => state.userState
   );
   const [loading] = useLoader();
+  const [error] = useErrorHandler();
   const dispatch = useDispatch<Dispatch<any>>();
   const [title, setTitle] = useState<string>("React App");
   const userActions: UserActions = new UserActions();
@@ -38,6 +40,10 @@ const UsersListContainer: React.FC = (): JSX.Element => {
   useEffect(() => {
     setUsers(new User(userState));
   }, [userState]);
+
+  if (error.userState) {
+    return <div>{error.userState.message}</div>;
+  }
 
   return (
     <>
