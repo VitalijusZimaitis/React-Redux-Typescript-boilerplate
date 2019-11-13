@@ -1,6 +1,5 @@
 import axios from "axios";
 import { LocalStorage } from "./LocalStorage";
-import { config } from "../config";
 import { AxiosResponse } from "axios";
 
 export class Request<TRequestData = any, TResponse extends {} = {}> {
@@ -12,7 +11,7 @@ export class Request<TRequestData = any, TResponse extends {} = {}> {
   constructor(url: string) {
     this.request = {
       ...this.request,
-      url: `${config.BASE_API_URL}${url}`
+      url: `${process.env.REACT_APP_BASE_API_URL}${url}`
     };
   }
 
