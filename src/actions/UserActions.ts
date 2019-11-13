@@ -7,18 +7,18 @@ import {
 } from "../types/User";
 import { AsyncThunkAction, TActionCallback } from "../types/Requests";
 import { Request } from "../generic/Request";
+import { BaseAction } from "./BaseAction";
 
-export class UserActions {
-  private requestName: string = "userState";
-
-  getRequestName = (): string => {
-    return this.requestName;
-  };
+export class UserActions extends BaseAction {
+  constructor() {
+    super();
+    this.setRequestName("userState");
+  }
 
   getAllUsers = (
     callback?: TActionCallback
   ): AsyncThunkAction<TUserState, TUserGetAllAction> => {
-    return new Action(UserGetAll, this.requestName).create(
+    return new Action(UserGetAll, this.getRequestName()).create(
       new Request<null, TApiUserEntity[]>(`/users`).get(),
       callback
     );
