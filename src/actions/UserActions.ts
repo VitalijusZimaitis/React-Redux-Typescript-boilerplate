@@ -19,7 +19,7 @@ export class UserActions {
     callback?: TActionCallback
   ): AsyncThunkAction<TUserState, TUserGetAllAction> => {
     return new Action(UserGetAll, this.requestName).create(
-      new Request<null, TApiUserEntity[]>(`/users`).get(),
+      new Request<null, TApiUserEntity[]>(`/userss`).get(),
       callback
     );
   };
