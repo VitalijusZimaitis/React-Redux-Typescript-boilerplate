@@ -10,25 +10,21 @@ import thunk from "redux-thunk";
 import { usersReducer } from "../reducers/UsersReducer";
 import { TUserState } from "../types/User";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { loadingReducer } from "../reducers/LoadingReducer";
-import { errorReducer } from "../reducers/ErrorReducer";
+import { requestReducer } from "../reducers/RequestReducer";
 
 export interface IAppState {
   userState: TUserState;
-  loading: any;
-  error: any;
+  request: {};
 }
 
 const initialAppState: DeepPartial<IAppState> = {
   userState: undefined,
-  loading: false,
-  error: undefined
+  request: {}
 };
 
 const rootReducer = combineReducers<IAppState>({
   userState: usersReducer,
-  loading: loadingReducer,
-  error: errorReducer
+  request: requestReducer
 });
 
 export default function configureStore(): Store<IAppState, AnyAction> {
