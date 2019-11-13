@@ -34,8 +34,10 @@ const UsersListContainer: React.FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    fetchUsersList();
-  }, []);
+    if (users.empty()) {
+      fetchUsersList();
+    }
+  });
 
   useEffect(() => {
     setUsers(new User(userState));

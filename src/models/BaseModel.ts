@@ -10,4 +10,8 @@ export class BaseModel {
   public all() {
     return this.state.data;
   }
+
+  public empty() {
+    return !this.state.data;
+  }
 }
