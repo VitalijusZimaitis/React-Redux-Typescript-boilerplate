@@ -9,7 +9,11 @@ import { AsyncThunkAction, TActionCallback } from "../types/Requests";
 import { Request } from "../generic/Request";
 
 export class UserActions {
-  public requestName: string = "userState";
+  private requestName: string = "userState";
+
+  getRequestName = (): string => {
+    return this.requestName;
+  };
 
   getAllUsers = (
     callback?: TActionCallback

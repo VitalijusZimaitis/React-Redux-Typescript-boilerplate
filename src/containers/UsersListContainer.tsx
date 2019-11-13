@@ -42,14 +42,14 @@ const UsersListContainer: React.FC = (): JSX.Element => {
   }, [userState]);
 
   if (error("userState")) {
-    return <div>{error(userActions.requestName).message}</div>;
+    return <div>{error(userActions.getRequestName()).message}</div>;
   }
 
   return (
     <>
       <h1>{title}</h1>
       <button onClick={fetchUsersList}>Fetch Users</button>
-      {users && isLoading(userActions.requestName) ? (
+      {users && isLoading(userActions.getRequestName()) ? (
         <Loading />
       ) : (
         <UserList users={users.all()} />
