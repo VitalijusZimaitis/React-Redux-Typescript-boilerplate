@@ -12,13 +12,13 @@ export const useRequest = () => {
     return !!(request[key] && request[key].loaded);
   };
 
-  const error = (key: string) => {
-    if (request[key] && request[key].error) {
-      return request[key] && request[key].error;
-    }
-
-    return false;
+  const hasError = (key: string) => {
+    return !!(request[key] && request[key].error);
   };
 
-  return { request: { isLoading, isLoaded, error } };
+  const getError = (key: string) => {
+    return request[key] && request[key].error;
+  };
+
+  return { request: { isLoading, isLoaded, hasError, getError } };
 };

@@ -16,7 +16,7 @@ const UsersListContainer: React.FC = (): JSX.Element => {
     (state: IAppState) => state.userState
   );
   const {
-    request: { isLoading, error }
+    request: { isLoading, hasError, getError }
   } = useRequest();
   const dispatch = useDispatch<Dispatch<any>>();
   const [title, setTitle] = useState<string>("React App");
@@ -41,8 +41,8 @@ const UsersListContainer: React.FC = (): JSX.Element => {
     setUsers(new User(userState));
   }, [userState]);
 
-  if (error("userState")) {
-    return <div>{error(userActions.getRequestName()).message}</div>;
+  if (hasError(userActions.getRequestName())) {
+    return <div>{getError(userActions.getRequestName()).message}</div>;
   }
 
   return (
