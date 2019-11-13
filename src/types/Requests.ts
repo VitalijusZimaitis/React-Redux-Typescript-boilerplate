@@ -10,8 +10,8 @@ export type AsyncThunkAction<T, U, P = any> = ThunkAction<
   Action<U>
 >;
 
-export type TActionCallback<T = any, S = any> = (...args: T[]) => S;
-export interface TApiCallback extends AxiosResponse, AxiosError {
+export interface TApiCallback<T = any> extends AxiosResponse<T>, AxiosError<T> {
   success?: boolean;
   error?: boolean;
 }
+export type TActionCallback<S = any> = (data: TApiCallback) => S;

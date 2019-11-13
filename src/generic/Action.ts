@@ -1,6 +1,10 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { ActionCreator, Dispatch } from "redux";
-import { AsyncThunkAction, TActionCallback } from "../types/Requests";
+import {
+  AsyncThunkAction,
+  TActionCallback,
+  TApiCallback
+} from "../types/Requests";
 
 export class Action<T = any, S = any> {
   private actionType: any;
@@ -28,18 +32,17 @@ export class Action<T = any, S = any> {
             action: this.action
           });
           if (typeof callback === "function") {
-            callback({ ...res, success: true });
+            callback({ ...res, success: true } as TApiCallback);
           }
         })
         .catch((err: AxiosError) => {
-          console.log(err);
           dispatch({
             payload: err,
             type: this.actionType.FAILED,
             action: this.action
           });
           if (typeof callback === "function") {
-            callback({ ...err, error: true });
+            callback({ ...err, error: true } as TApiCallback);
           }
         });
     };

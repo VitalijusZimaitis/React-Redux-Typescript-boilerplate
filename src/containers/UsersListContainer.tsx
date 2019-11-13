@@ -1,7 +1,7 @@
 import * as React from "react";
 import { IAppState } from "../store/Store";
 import { useSelector, useDispatch } from "react-redux";
-import { TUserState } from "../types/User";
+import { TApiUserEntity, TUserState } from "../types/User";
 import { UserList } from "../components/UsersList";
 import { Dispatch } from "redux";
 import Loading from "../components/Loading";
@@ -25,7 +25,7 @@ const UsersListContainer: React.FC = (): JSX.Element => {
 
   const fetchUsersList = () => {
     return dispatch(
-      userActions.getAllUsers((data: TApiCallback) => {
+      userActions.getAllUsers((data: TApiCallback<TApiUserEntity[]>) => {
         if (data.success) {
           setTitle("React App - Success");
         }
