@@ -26,5 +26,5 @@ export const useRequest = () => {
     return request[key] && request[key].error;
   };
 
-  return { request: { isLoading, isLoaded, hasError, getError } };
+  return { isLoading, isLoaded, hasError, getError };
 };

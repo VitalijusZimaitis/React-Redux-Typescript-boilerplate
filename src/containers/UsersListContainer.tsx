@@ -17,9 +17,7 @@ const UsersListContainer: React.FC = (): JSX.Element => {
     (state: IAppState) => state.userState
   );
   const { t } = useTranslation();
-  const {
-    request: { isLoading, hasError, getError }
-  } = useRequest();
+  const { isLoading, hasError, getError } = useRequest();
   const dispatch = useDispatch<Dispatch<any>>();
   const [title] = useState<string>(t("Welcome to React"));
   const userActions: UserActions = new UserActions();
