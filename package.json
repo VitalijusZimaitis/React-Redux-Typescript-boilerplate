@@ -22,8 +22,8 @@
     "typescript": "3.5.1"
   },
   "scripts": {
-    "build:css": "node-sass src/styles/sass/ -o src/styles/css",
-    "watch:css": "yarn run build:css && node-sass src/styles/sass/ -o src/styles/css/ --watch --recursive",
+    "build:css": "node-sass src/assets/styles/sass/ -o src/assets/styles/css",
+    "watch:css": "yarn run build:css && node-sass src/assets/styles/sass/ -o src/assets/styles/css/ --watch --recursive",
     "start:js": "react-scripts start",
     "start": "npm-run-all -p watch:css start:js",
     "build": "yarn run build:css && react-scripts build",
