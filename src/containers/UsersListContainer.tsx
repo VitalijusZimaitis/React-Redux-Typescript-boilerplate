@@ -10,16 +10,18 @@ import { UserActions } from "../actions/UserActions";
 import { TApiCallback } from "../types/Requests";
 import { User } from "../models/User";
 import { useRequest } from "../hooks/useRequest";
+import { useTranslation } from "react-i18next";
 
 const UsersListContainer: React.FC = (): JSX.Element => {
   const userState: TUserState = useSelector<IAppState, TUserState>(
     (state: IAppState) => state.userState
   );
+  const { t } = useTranslation();
   const {
     request: { isLoading, hasError, getError }
   } = useRequest();
   const dispatch = useDispatch<Dispatch<any>>();
-  const [title, setTitle] = useState<string>("React App");
+  const [title] = useState<string>(t("Welcome to React"));
   const userActions: UserActions = new UserActions();
   const [users, setUsers] = useState<User>(new User(userState));
 
@@ -27,7 +29,7 @@ const UsersListContainer: React.FC = (): JSX.Element => {
     return dispatch(
       userActions.getAllUsers((data: TApiCallback<TApiUserEntity[]>) => {
         if (data.success) {
-          setTitle("React App - Success");
+          console.log("Success");
         }
       })
     );
