@@ -1,4 +1,4 @@
-import { AxiosResponse, AxiosError } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 
 export interface TApiUserEntity {
   id: number;

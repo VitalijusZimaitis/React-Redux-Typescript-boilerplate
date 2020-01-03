@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import configureStore from "./store/Store";
 import { Provider } from "react-redux";
-import "./config/i18next";
+import App from "./App";
 
 const store = configureStore();
 

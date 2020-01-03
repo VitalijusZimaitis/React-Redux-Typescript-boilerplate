@@ -1,26 +1,18 @@
-import { Action } from "../generic/Action";
 import {
-  TUserGetAllAction,
-  TUserState,
   TApiUserEntity,
+  TUserGetAllAction,
   UserGetAll
 } from "../types/User";
-import { AsyncThunkAction, TActionCallback } from "../types/Requests";
-import { Request } from "../generic/Request";
-import { BaseAction } from "./BaseAction";
+import { apiCall } from "./BaseAction";
 
-export class UserActions extends BaseAction {
-  constructor() {
-    super();
-    this.setRequestName("userState");
-  }
+const fetchUsersList = () => {
+  return apiCall<TUserGetAllAction, null, Array<TApiUserEntity>>(
+    UserGetAll,
+    "GET",
+    "/users"
+  );
+};
 
-  getAllUsers = (
-    callback?: TActionCallback
-  ): AsyncThunkAction<TUserState, TUserGetAllAction> => {
-    return new Action(UserGetAll, this.getRequestName()).create(
-      new Request<null, TApiUserEntity[]>(`/users`).get(),
-      callback
-    );
-  };
-}
+export const UserActions = {
+  getAll: fetchUsersList
+};

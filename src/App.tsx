@@ -1,19 +1,22 @@
-import React from "react";
-import UsersListContainer from "./containers/UsersListContainer";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import * as React from "react";
 import "./assets/styles/css/App.css";
-import ErrorBoundary from "./ErrorBoundary";
+import { BrowserRouter, Route } from "react-router-dom";
+import UserListContainer from "./containers/UserListContainer";
 import { routes } from "./Routes";
-import { UserExample } from "./components/UserExample";
+import ErrorBoundary from "./ErrorBoundary";
+import Home from "./components/Home";
 
 const App: React.FC = () => {
   return (
     <ErrorBoundary>
       <BrowserRouter>
-        <Switch>
-          <Route exact path={routes.home} component={UsersListContainer} />
-          <Route exact path={routes.user} component={UserExample} />
-        </Switch>
+        <Route key={"home"} exact path={routes.home} component={Home} />
+        <Route
+          key={"user-list"}
+          exact
+          path={routes.userList}
+          component={UserListContainer}
+        />
       </BrowserRouter>
     </ErrorBoundary>
   );
