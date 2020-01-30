@@ -4,6 +4,7 @@ import * as serviceWorker from "./serviceWorker";
 import configureStore from "./store/Store";
 import { Provider } from "react-redux";
 import App from "./App";
+import './config/i18next';
 
 const store = configureStore();
 

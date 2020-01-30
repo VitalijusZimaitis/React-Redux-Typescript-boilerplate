@@ -59,10 +59,10 @@ export const apiCall = <
   };
 };
 
-export const clearStoreErrors = () => {
+export const exampleSimpleAction = () => {
   return (dispatch: Dispatch) => {
     dispatch({
-      type: "CLEAR_ERRORS"
+      type: "SIMPLE_ACTION"
     });
   };
 };
