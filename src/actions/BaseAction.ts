@@ -1,6 +1,8 @@
 import axios, { AxiosResponse, Method } from "axios";
+import createAuthRefreshInterceptor from "axios-auth-refresh";
 import { Dispatch } from "redux";
 import { TDispatch } from "../types/Thunk";
+import { getAccessToken } from "../helpers/Misc";
 
 export const apiClient = axios.create({
   baseURL: process.env.REACT_APP_BASE_API_URL,
@@ -29,14 +31,27 @@ export const apiCall = <
       type: action.REQUEST
     });
     try {
+      const refreshAuthToken = (failedRequest: any) =>
+        apiClient
+          .post("https://www.example.com/auth/token/refresh")
+          .then(tokenRefreshResponse => {
+            failedRequest.response.config.headers["Authorization"] =
+              "Bearer " + tokenRefreshResponse.data.token;
+            return Promise.resolve();
+          });
+
+      createAuthRefreshInterceptor(apiClient, refreshAuthToken);
+
+      if (authorized) {
+        apiClient.interceptors.request.use(request => {
+          request.headers["Authorization"] = `Bearer ${getAccessToken()}`;
+          return request;
+        });
+      }
+
       return await apiClient
         .request<TResponse>({
           data,
-          headers: {
-            Authorization: authorized
-              ? "Bearer " + localStorage.getItem("token")
-              : ""
-          },
           method,
           params,
           url

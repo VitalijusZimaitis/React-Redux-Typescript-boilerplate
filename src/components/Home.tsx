@@ -7,7 +7,12 @@ const Home: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
   return (
     <>
-      <h1>{t("Welcome to React")}</h1>
+      <h1>
+        {t("Welcome to React", {
+          color: "red",
+          interpolation: { escapeValue: false }
+        })}
+      </h1>
       <Link to={routes.userList}>Users</Link>
     </>
   );

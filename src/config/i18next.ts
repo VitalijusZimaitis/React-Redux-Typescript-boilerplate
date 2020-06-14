@@ -1,7 +1,14 @@
 import i18n from "i18next";
 import XHR from "i18next-xhr-backend";
+import localeEn from '../assets/locales/en.json';
 
 const language = i18n.language || "en-US";
+
+// const resources = {
+//   en: {
+//     translation: localeEn
+//   }
+// };
 
 const backendOptions = {
   type: "backend",
@@ -17,16 +24,17 @@ const options: any = {
   fallbackLng: language,
   ns: ["translations"],
   defaultNS: "translations",
+  saveMissing: true,
+  updateMissing: true,
 
   react: {
-    wait: false,
-    bindI18n: "languageChanged loaded",
-    bindStore: "added removed",
-    nsMode: "default",
-    defaultTransParent: "div"
+    wait: true,
+    useSuspense: false
   }
 };
 
 options["backend"] = backendOptions;
 
 i18n.use(XHR).init(options);
+
+export default i18n;

@@ -17,6 +17,7 @@ const UserListContainer: React.FC = (): JSX.Element => {
   const userState: TUserState = useSelector<IAppState, TUserState>(
     (state: IAppState) => state.userState
   );
+
   useEffect(() => {
     dispatch(UserActions.getAll()).then(
       (res: AxiosResponse<Array<TApiUserEntity>>) => {
