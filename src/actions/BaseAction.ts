@@ -3,13 +3,14 @@ import createAuthRefreshInterceptor from "axios-auth-refresh";
 import { Dispatch } from "redux";
 import { TDispatch } from "../types/Thunk";
 import { getAccessToken } from "../helpers/Misc";
+import { SetAppError } from "../types/Error";
 
 export const apiClient = axios.create({
   baseURL: process.env.REACT_APP_BASE_API_URL,
   responseType: "json",
   headers: {
-    "Content-Type": "application/json"
-  }
+    "Content-Type": "application/json",
+  },
 });
 
 export const apiCall = <
@@ -28,13 +29,13 @@ export const apiCall = <
     dispatch: TDispatch<TAction>
   ): Promise<AxiosResponse<TResponse>> => {
     dispatch({
-      type: action.REQUEST
+      type: action.REQUEST,
     });
     try {
       const refreshAuthToken = (failedRequest: any) =>
         apiClient
           .post("https://www.example.com/auth/token/refresh")
-          .then(tokenRefreshResponse => {
+          .then((tokenRefreshResponse) => {
             failedRequest.response.config.headers["Authorization"] =
               "Bearer " + tokenRefreshResponse.data.token;
             return Promise.resolve();
@@ -43,7 +44,7 @@ export const apiCall = <
       createAuthRefreshInterceptor(apiClient, refreshAuthToken);
 
       if (authorized) {
-        apiClient.interceptors.request.use(request => {
+        apiClient.interceptors.request.use((request) => {
           request.headers["Authorization"] = `Bearer ${getAccessToken()}`;
           return request;
         });
@@ -54,12 +55,12 @@ export const apiCall = <
           data,
           method,
           params,
-          url
+          url,
         })
         .then((res: AxiosResponse<TResponse>) => {
           dispatch({
             type: action.SUCCESS,
-            payload: res
+            payload: res,
           });
 
           return res;
@@ -67,17 +68,23 @@ export const apiCall = <
     } catch (err) {
       dispatch({
         type: action.FAILED,
-        payload: err
+        payload: err,
       });
       throw err;
     }
   };
 };
 
-export const exampleSimpleAction = () => {
+interface IErrorPayload {
+  message: string;
+  code: number;
+}
+
+export const errorAction = (payload: IErrorPayload) => {
   return (dispatch: Dispatch) => {
     dispatch({
-      type: "SIMPLE_ACTION"
+      type: SetAppError.SUCCESS,
+      payload,
     });
   };
 };
