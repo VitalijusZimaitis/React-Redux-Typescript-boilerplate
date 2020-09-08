@@ -14,7 +14,7 @@ const backendOptions = {
   type: "backend",
   crossDomain: false,
   allowMultiLoading: false,
-  loadPath: `your-backend-api/?locale_code=${language}`
+  loadPath: `your-backend-api/?locale_code={{lng}}`
 };
 
 const options: any = {
