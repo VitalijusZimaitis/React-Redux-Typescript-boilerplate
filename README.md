@@ -12,11 +12,11 @@
 
 In the project directory, you can run:
 
-`yarn watch` or `npm run watch`
+`yarn start` or `npm run start`
 
 Watches resource folder for changes
 
-`yarn production` or `npm run production`
+`yarn build` or `npm run build`
 
 Building the app for deployment
 
