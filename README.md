@@ -1,44 +1,86 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[React]((https://reactjs.org/)) part was created with [Create React App](https://github.com/facebook/create-react-app). Added [Typescript](https://www.typescriptlang.org/) support.
+
+## Additional libraries
+- [Redux](https://redux.js.org/)
+- [Redux Thunk](https://github.com/reduxjs/redux-thunk)
+- [i18next](https://www.i18next.com/)
+- [React Router](https://reactrouter.com/)
+- [Lodash](https://lodash.com/)
+- [Axios](https://github.com/axios/axios)
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+`yarn watch` or `npm run watch`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Watches resource folder for changes
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+`yarn production` or `npm run production`
 
-### `yarn test`
+Building the app for deployment
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Development
 
-### `yarn build`
+All request made to and api endpoint must have redux action with given suffixes: `_REQUEST`, `_SUCCESS`, `_FAILED`. In example:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+export enum UserGetAll {
+   REQUEST = "USER_GET_ALL_REQUEST",
+   SUCCESS = "USER_GET_ALL_SUCCESS",
+   FAILED = "USER_GET_ALL_FAILED",
+}
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Simple app actions should not use those suffixes, since they are mostly for tracking app loading state.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Formatting
 
-### `yarn eject`
+Project must be formatted with [Prettier](https://prettier.io/). Add following line to: `package.json`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+"prettier": {
+   "tabWidth": 2
+}
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Cheatsheet
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Simple React Component
+```
+//TestComponent.tsx
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+import * as React from "react";
 
-## Learn More
+const TestComponent: React.FC = (): JSX.Element => {
+  return <div>Hello World</div>;
+};
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export default TestComponent;
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+
+### Component with props
+```
+//TestComponent.tsx
+
+import * as React from "react";
+
+interface ITestComponentProps {
+  text: string;
+}
+
+const TestComponent: React.FC<ITestComponentProps> = (props): JSX.Element => {
+  return <div>{props.text}</div>;
+};
+
+export default TestComponent;
+
+```
+
+### Commonly used Hooks
+- [useEffect()](https://reactjs.org/docs/hooks-effect.html) - performing additional tasks inside component (ie: fetching from api, updating state)
+- [useState()](https://reactjs.org/docs/hooks-state.html) - managing state inside component
+- [useSelector()](https://react-redux.js.org/api/hooks#useselector) - fetching data from Redux Store
+- [useDispatch()](https://react-redux.js.org/api/hooks#usedispatch) - dispatching actions (api calls, redux actions and etc)
+- [useRef()](https://reactjs.org/docs/hooks-reference.html#useref) - managing additional actions for HTML element (like focusing input and etc)
