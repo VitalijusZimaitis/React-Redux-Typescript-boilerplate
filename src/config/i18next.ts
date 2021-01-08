@@ -1,6 +1,5 @@
 import i18n from "i18next";
 import XHR from "i18next-xhr-backend";
-import localeEn from '../assets/locales/en.json';
 
 const language = i18n.language || "en-US";
 
@@ -14,7 +13,7 @@ const backendOptions = {
   type: "backend",
   crossDomain: false,
   allowMultiLoading: false,
-  loadPath: `your-backend-api/?locale_code={{lng}}`
+  loadPath: `your-backend-api/?locale_code={{lng}}`,
 };
 
 const options: any = {
@@ -29,8 +28,8 @@ const options: any = {
 
   react: {
     wait: true,
-    useSuspense: false
-  }
+    useSuspense: false,
+  },
 };
 
 options["backend"] = backendOptions;
