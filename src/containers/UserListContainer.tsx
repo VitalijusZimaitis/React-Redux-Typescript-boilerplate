@@ -1,10 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TDispatch } from "../types/Thunk";
-import { useEffect } from "react";
-import { UserActions } from "../actions/UserActions";
-import { AxiosResponse } from "axios";
-import { TApiUserEntity, TUserState, UserGetAll } from "../types/User";
+import { useCallback, useEffect, useState } from "react";
+import { fetchUsersList } from "../actions/UserActions";
+import { TUserState, UserGetAll } from "../types/User";
 import UserList from "../components/UserList";
 import { IAppState } from "../store/Store";
 import { Link } from "react-router-dom";
@@ -12,31 +10,37 @@ import { routes } from "../Routes";
 import { useApp } from "../hooks/useApp";
 
 const UserListContainer: React.FC = (): JSX.Element => {
-  const dispatch = useDispatch<TDispatch>();
+  const dispatch = useDispatch();
   const { app } = useApp();
   const userState: TUserState = useSelector<IAppState, TUserState>(
     (state: IAppState) => state.userState
   );
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const getUserList = useCallback(async () => {
+    try {
+      dispatch(fetchUsersList());
+    } catch (e) {
+      setError(true);
+    }
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(UserActions.getAll()).then(
-      (res: AxiosResponse<Array<TApiUserEntity>>) => {
-        console.log(
-          res.data.map((user: TApiUserEntity) => {
-            return user.name;
-          })
-        );
-      }
-    );
-  }, [dispatch]);
+    getUserList().then(() => {
+      setSuccess(true);
+    });
+  }, [getUserList]);
 
   return (
     <>
       <Link to={routes.home}>Back</Link>
+      {success && <div>User list fetched</div>}
+      {error && <div>Error occurred</div>}
       {app.isLoading(UserGetAll) ? (
-        <>Loading</>
+        <div>Loading</div>
       ) : (
-        <>{userState.data && <UserList users={userState.data} />}</>
+        <div>{userState.data && <UserList users={userState.data} />}</div>
       )}
     </>
   );
