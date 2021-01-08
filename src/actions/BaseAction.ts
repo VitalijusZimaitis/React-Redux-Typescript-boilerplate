@@ -16,20 +16,23 @@ export const apiClient = axios.create({
 export const apiCall = <
   TAction = any,
   TRequestData = any,
-  TResponse extends {} = {}
+  TResponse extends {} = {},
+  TMetaData = any
 >(
   action: any,
   method: Method,
   url: string,
   authorized: boolean = false,
   data: TRequestData | null = {} as TRequestData,
-  params: any = {}
+  params: any = {},
+  metaData?: TMetaData
 ) => {
   return async (
     dispatch: TDispatch<TAction>
   ): Promise<AxiosResponse<TResponse>> => {
     dispatch({
       type: action.REQUEST,
+      metaData,
     });
     try {
       const refreshAuthToken = (failedRequest: any) =>
@@ -61,6 +64,7 @@ export const apiCall = <
           dispatch({
             type: action.SUCCESS,
             payload: res,
+            metaData,
           });
 
           return res;
@@ -69,6 +73,7 @@ export const apiCall = <
       dispatch({
         type: action.FAILED,
         payload: err,
+        metaData,
       });
       throw err;
     }

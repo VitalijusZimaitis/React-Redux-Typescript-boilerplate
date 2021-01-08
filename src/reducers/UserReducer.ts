@@ -2,7 +2,7 @@ import {
   initialUserState,
   TUserActions,
   TUserState,
-  UserGetAll
+  UserGetAll,
 } from "../types/User";
 import { Reducer } from "redux";
 
@@ -12,9 +12,11 @@ export const usersReducer: Reducer<TUserState, TUserActions> = (
 ) => {
   switch (action.type) {
     case UserGetAll.SUCCESS: {
+      console.log(action);
       return {
         ...state,
-        data: action.payload.data
+        data: action.payload.data,
+        meta: action.metaData.test,
       };
     }
 

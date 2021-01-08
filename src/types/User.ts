@@ -11,16 +11,17 @@ export interface TApiUserEntity {
 
 export interface TUserState {
   readonly data?: Array<TApiUserEntity>;
+  readonly meta?: string;
 }
 
 export const initialUserState: TUserState = {
-  data: undefined
+  data: undefined,
 };
 
 export enum UserGetAll {
   REQUEST = "USER_GET_ALL_REQUEST",
   SUCCESS = "USER_GET_ALL_SUCCESS",
-  FAILED = "USER_GET_ALL_FAILED"
+  FAILED = "USER_GET_ALL_FAILED",
 }
 
 export type TUserGetAllAction =
@@ -30,6 +31,7 @@ export type TUserGetAllAction =
   | {
       type: UserGetAll.SUCCESS;
       payload: AxiosResponse<Array<TApiUserEntity>>;
+      metaData: { test: string };
     }
   | {
       type: UserGetAll.FAILED;

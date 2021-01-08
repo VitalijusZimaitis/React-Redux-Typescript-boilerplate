@@ -6,6 +6,9 @@ export const fetchUsersList = () => {
     UserGetAll,
     "GET",
     "/users",
-    true
+    true,
+    null,
+    null,
+    { test: "Test message for additional data" }
   );
 };
