@@ -1,4 +1,4 @@
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import configureStore from "./store/Store";
 import { Provider } from "react-redux";
@@ -13,9 +13,9 @@ const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
     <I18nextProvider i18n={i18n}>
-      <React.StrictMode>
+      <StrictMode>
         <App />
-      </React.StrictMode>
+      </StrictMode>
     </I18nextProvider>
   </Provider>,
   document.getElementById("root")
