@@ -1,4 +1,8 @@
-import { TApiUserEntity, TUserGetAllAction, UserGetAll } from "../types/User";
+import {
+  TApiUserEntity,
+  TUserGetAllAction,
+  UserGetAll,
+} from "../../types/User";
 import { apiCall } from "./BaseAction";
 
 export const fetchUsersList = () => {

@@ -1,9 +1,9 @@
 import axios, { AxiosResponse, Method } from "axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
 import { Dispatch } from "redux";
-import { TDispatch } from "../types/Thunk";
-import { getAccessToken } from "../helpers/Misc";
-import { SetAppError } from "../types/Error";
+import { TDispatch } from "../../types/Thunk";
+import { getAccessToken } from "../../helpers/Misc";
+import { SetAppError } from "../../types/Error";
 
 export const apiClient = axios.create({
   baseURL: process.env.REACT_APP_BASE_API_URL,
@@ -25,14 +25,14 @@ export const apiCall = <
   authorized: boolean = false,
   data: TRequestData | null = {} as TRequestData,
   params: any = {},
-  metaData?: TMetaData
+  meta?: TMetaData
 ) => {
   return async (
     dispatch: TDispatch<TAction>
   ): Promise<AxiosResponse<TResponse>> => {
     dispatch({
       type: action.REQUEST,
-      metaData,
+      meta,
     });
     try {
       const refreshAuthToken = (failedRequest: any) =>
@@ -64,7 +64,7 @@ export const apiCall = <
           dispatch({
             type: action.SUCCESS,
             payload: res,
-            metaData,
+            meta,
           });
 
           return res;
@@ -73,7 +73,7 @@ export const apiCall = <
       dispatch({
         type: action.FAILED,
         payload: err,
-        metaData,
+        meta,
       });
       throw err;
     }

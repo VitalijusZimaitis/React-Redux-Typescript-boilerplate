@@ -1,4 +1,5 @@
 import { AxiosError, AxiosResponse } from "axios";
+import { BaseAppState } from "./App";
 
 export interface TApiUserEntity {
   id: number;
@@ -9,9 +10,8 @@ export interface TApiUserEntity {
   website: string;
 }
 
-export interface TUserState {
+export interface TUserState extends BaseAppState<string> {
   readonly data?: Array<TApiUserEntity>;
-  readonly meta?: string;
 }
 
 export const initialUserState: TUserState = {
@@ -26,16 +26,16 @@ export enum UserGetAll {
 
 export type TUserGetAllAction =
   | {
-      type: UserGetAll.REQUEST;
+      readonly type: UserGetAll.REQUEST;
     }
   | {
-      type: UserGetAll.SUCCESS;
-      payload: AxiosResponse<Array<TApiUserEntity>>;
-      metaData: { test: string };
+      readonly type: UserGetAll.SUCCESS;
+      readonly payload: AxiosResponse<Array<TApiUserEntity>>;
+      readonly meta: { test: string };
     }
   | {
-      type: UserGetAll.FAILED;
-      payload: AxiosError;
+      readonly type: UserGetAll.FAILED;
+      readonly payload: AxiosError;
     };
 
 export type TUserActions = TUserGetAllAction;

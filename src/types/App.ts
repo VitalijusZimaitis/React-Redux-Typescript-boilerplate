@@ -3,3 +3,7 @@ export interface IApp {
   loaded: boolean;
   error: boolean | [];
 }
+
+export interface BaseAppState<TMeta> {
+  meta?: TMeta;
+}

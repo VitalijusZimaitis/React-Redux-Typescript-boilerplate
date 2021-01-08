@@ -9,9 +9,9 @@ import {
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { TUserState } from "../types/User";
-import { usersReducer } from "../reducers/UserReducer";
-import { requestReducer } from "../reducers/RequestReducer";
-import { ErrorHandler } from "../middlewares/ErrorHandler";
+import { usersReducer } from "./reducers/UserReducer";
+import { requestReducer } from "./reducers/RequestReducer";
+import { ErrorHandler } from "./middlewares/ErrorHandler";
 
 export interface IAppState {
   userState: TUserState;

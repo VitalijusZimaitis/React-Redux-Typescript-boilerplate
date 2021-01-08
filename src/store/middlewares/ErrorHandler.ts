@@ -1,7 +1,7 @@
 import { AxiosResponse, AxiosError } from "axios";
 import { MiddlewareAPI, Dispatch, Middleware, AnyAction } from "redux";
 import { errorAction } from "../actions/BaseAction";
-import i18n from "../config/i18next";
+import i18n from "../../config/i18next";
 
 interface IAction {
   type: any;

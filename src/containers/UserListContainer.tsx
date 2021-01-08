@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useState } from "react";
-import { fetchUsersList } from "../actions/UserActions";
+import { fetchUsersList } from "../store/actions/UserActions";
 import { TUserState, UserGetAll } from "../types/User";
 import UserList from "../components/UserList";
 import { IAppState } from "../store/Store";
