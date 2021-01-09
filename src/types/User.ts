@@ -13,6 +13,7 @@ export interface TApiUserEntity {
 
 export interface TUserState extends BaseAppState<string> {
   readonly data?: Array<TApiUserEntity>;
+  readonly loading?: boolean;
 }
 
 export const initialUserState: TUserState = {

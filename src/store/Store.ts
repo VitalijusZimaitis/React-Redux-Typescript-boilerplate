@@ -28,6 +28,10 @@ const rootReducer = combineReducers<IAppState>({
   appState: requestReducer,
 });
 
+export function endReducer<T>(state: T, action: never): T {
+  return state;
+}
+
 export default function configureStore(): Store<IAppState, AnyAction> {
   return createStore(
     rootReducer,
