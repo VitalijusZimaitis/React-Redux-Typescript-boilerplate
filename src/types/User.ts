@@ -1,5 +1,6 @@
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { BaseAppState } from "./App";
+import { BaseAsyncAction } from "./Thunk";
 
 export interface TApiUserEntity {
   id: number;
@@ -25,17 +26,12 @@ export enum UserGetAll {
 }
 
 export type TUserGetAllAction =
-  | {
-      readonly type: UserGetAll.REQUEST;
-    }
-  | {
-      readonly type: UserGetAll.SUCCESS;
-      readonly payload: AxiosResponse<Array<TApiUserEntity>>;
-      readonly meta: { test: string };
-    }
-  | {
-      readonly type: UserGetAll.FAILED;
-      readonly payload: AxiosError;
-    };
+  | BaseAsyncAction<UserGetAll.REQUEST>
+  | BaseAsyncAction<
+      UserGetAll.SUCCESS,
+      AxiosResponse<Array<TApiUserEntity>>,
+      { test: string }
+    >
+  | BaseAsyncAction<UserGetAll.FAILED>;
 
 export type TUserActions = TUserGetAllAction;
