@@ -10,10 +10,12 @@ const Home: React.FC = (): JSX.Element => {
       <h1>
         {t("Welcome to React", {
           color: "red",
-          interpolation: { escapeValue: false }
+          interpolation: { escapeValue: false },
         })}
       </h1>
       <Link to={routes.userList}>Users</Link>
+      <br />
+      <Link to={routes.forms}>Formik</Link>
     </>
   );
 };
