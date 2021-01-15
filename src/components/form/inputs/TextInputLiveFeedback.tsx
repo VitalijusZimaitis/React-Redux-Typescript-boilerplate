@@ -6,8 +6,12 @@ type FormikTextFieldProps = {
   formikKey: string;
 } & TextFieldProps;
 
-const TextInputLiveFeedback = ({ label, ...props }: FormikTextFieldProps) => {
-  const [field, meta] = useField(props.formikKey);
+const TextInputLiveFeedback = ({
+  label,
+  formikKey,
+  ...props
+}: FormikTextFieldProps) => {
+  const [field, meta] = useField(formikKey);
   const [didFocus, setDidFocus] = React.useState(false);
   const handleFocus = () => setDidFocus(true);
   const showFeedback =
@@ -17,7 +21,7 @@ const TextInputLiveFeedback = ({ label, ...props }: FormikTextFieldProps) => {
     <TextField
       {...props}
       {...field}
-      aria-describedby={`${props.formikKey}-feedback ${props.formikKey}-help`}
+      aria-describedby={`${formikKey}-feedback ${formikKey}-help`}
       onFocus={handleFocus}
       helperText={meta.error && showFeedback ? meta.error : props.helperText}
       error={!!meta.error}
