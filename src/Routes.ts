@@ -39,6 +39,11 @@ export const Routes: RouteType = {
       return `/`;
     },
   },
+  authorized: {
+    path: "/authorized",
+    authorized: true,
+    exact: true,
+  },
   notFound: {
     path: "*",
     exact: false,
