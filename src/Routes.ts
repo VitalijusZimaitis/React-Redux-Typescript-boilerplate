@@ -1,6 +1,8 @@
 import { RouteType } from "./types/Route";
 import * as React from "react";
-const Home = React.lazy(() => import("./components/Home"));
+const Home = React.lazy(
+  () => import(/* webpackChunkName: "HomePage" */ "./components/Home")
+);
 const FormsContainer = React.lazy(() => import("./containers/FormsContainer"));
 const UserListContainer = React.lazy(
   () => import("./containers/UserListContainer")
