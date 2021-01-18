@@ -23,7 +23,7 @@ const RouteManager: React.FC<RouteManageProps> = ({ routes }): JSX.Element => {
         const RouteComponent = redirect ? (
           <Redirect to={redirectPath} />
         ) : (
-          withSuspense(Cmp)
+          withSuspense(Cmp as React.FC)
         );
 
         if (authorized) {
