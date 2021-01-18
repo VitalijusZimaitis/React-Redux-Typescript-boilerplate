@@ -3,7 +3,7 @@ import "./assets/styles/css/App.css";
 import { BrowserRouter } from "react-router-dom";
 import ErrorBoundary from "./ErrorBoundary";
 import i18n from "i18next";
-import AppRoutes from "./containers/routes/AppRoutes";
+import AppRoutes from "./containers/Routes/AppRoutes";
 
 const App: React.FC = () => {
   return (
