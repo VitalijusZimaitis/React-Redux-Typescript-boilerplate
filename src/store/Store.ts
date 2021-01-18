@@ -26,6 +26,7 @@ const initialAppState: DeepPartial<IAppState> = {
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["appState"],
 };
 
 const rootReducer = combineReducers<IAppState>({
