@@ -43,6 +43,7 @@ export const Routes: RouteType = {
     path: "/authorized",
     authorized: true,
     exact: true,
+    component: UserListContainer,
   },
   notFound: {
     path: "*",

@@ -2,6 +2,7 @@ import * as React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import withSuspense from "../../components/Suspense/Suspense";
 import { RouteType } from "../../types/Route";
+import PrivateRoute from "./PrivateRoute";
 
 type RouteManageProps = {
   routes: RouteType;
@@ -16,7 +17,7 @@ const RouteManager: React.FC<RouteManageProps> = ({ routes }): JSX.Element => {
           exact = false,
           redirect = null,
           component: Cmp,
-          authorized,
+          authorized = false,
         } = route;
 
         const redirectPath = redirect ? redirect(true) : "";
@@ -26,9 +27,15 @@ const RouteManager: React.FC<RouteManageProps> = ({ routes }): JSX.Element => {
           withSuspense(Cmp as React.FC)
         );
 
-        if (authorized) {
-          //Custom logic for authorized Route
-          return <h1>Route is authorized</h1>;
+        if (authorized && !redirect) {
+          return (
+            <PrivateRoute
+              key={key}
+              path={path}
+              exact={exact}
+              component={RouteComponent as React.FC}
+            />
+          );
         }
 
         return (
