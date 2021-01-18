@@ -7,6 +7,8 @@
 - [React Router](https://reactrouter.com/)
 - [Lodash](https://lodash.com/)
 - [Axios](https://github.com/axios/axios)
+- [Formik](https://formik.org/)
+- [Redux Persist](https://github.com/rt2zz/redux-persist)
 
 ## Available Scripts
 
