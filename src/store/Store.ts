@@ -1,10 +1,8 @@
 import {
-  AnyAction,
   applyMiddleware,
   combineReducers,
   createStore,
   DeepPartial,
-  Store,
 } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -12,6 +10,8 @@ import { TUserState } from "../types/User";
 import { usersReducer } from "./reducers/UserReducer";
 import { requestReducer } from "./reducers/RequestReducer";
 import { ErrorHandler } from "./middlewares/ErrorHandler";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 export interface IAppState {
   userState: TUserState;
@@ -23,19 +23,28 @@ const initialAppState: DeepPartial<IAppState> = {
   appState: {},
 };
 
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
 const rootReducer = combineReducers<IAppState>({
   userState: usersReducer,
   appState: requestReducer,
 });
 
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 export function endReducer<T>(state: T, action: never): T {
   return state;
 }
 
-export default function configureStore(): Store<IAppState, AnyAction> {
-  return createStore(
-    rootReducer,
-    initialAppState,
-    composeWithDevTools(applyMiddleware(thunk, ErrorHandler))
-  );
-}
+const store = createStore(
+  persistedReducer,
+  initialAppState,
+  composeWithDevTools(applyMiddleware(thunk, ErrorHandler))
+);
+
+const persistor = persistStore(store);
+
+export { store, persistor };

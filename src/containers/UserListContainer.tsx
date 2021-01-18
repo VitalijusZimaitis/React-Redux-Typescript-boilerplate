@@ -20,11 +20,13 @@ const UserListContainer: React.FC = (): JSX.Element => {
 
   const getUserList = useCallback(async () => {
     try {
-      dispatch(fetchUsersList());
+      if (!userState.data) {
+        dispatch(fetchUsersList());
+      }
     } catch (e) {
       setError(true);
     }
-  }, [dispatch]);
+  }, [dispatch, userState.data]);
 
   useEffect(() => {
     getUserList().then(() => {
