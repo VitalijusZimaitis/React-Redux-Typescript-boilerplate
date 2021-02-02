@@ -1,15 +1,15 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useState } from "react";
-import { fetchUsersList } from "../store/actions/UserActions";
-import { TUserState, UserGetAll } from "../types/User";
-import UserList from "../components/UserList";
-import { IAppState } from "../store/Store";
+import { fetchUsersList } from "../../store/actions/UserActions";
+import { TUserState, UserGetAll } from "../../types/User";
+import UserList from "../../components/UserList";
+import { IAppState } from "../../store/Store";
 import { Link } from "react-router-dom";
-import { routes } from "../Routes";
-import { useApp } from "../hooks/useApp";
+import { routes } from "../../Routes";
+import { useApp } from "../../hooks/useApp";
 
-const UserListContainer: React.FC = (): JSX.Element => {
+const Users: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const { app } = useApp();
   const userState: TUserState = useSelector<IAppState, TUserState>(
@@ -48,4 +48,4 @@ const UserListContainer: React.FC = (): JSX.Element => {
   );
 };
 
-export default UserListContainer;
+export default Users;

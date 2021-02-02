@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Form, FormikProvider, useFormik } from "formik";
 import * as Yup from "yup";
-import TextInputLiveFeedback from "../components/form/inputs/TextInputLiveFeedback";
+import TextInputLiveFeedback from "../../components/Form/Inputs/TextInputLiveFeedback";
 import { Button, Grid } from "@material-ui/core";
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -10,7 +10,7 @@ type FormValues = {
   username: string;
 };
 
-const FormsContainer: React.FC = (): JSX.Element => {
+const Forms: React.FC = (): JSX.Element => {
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -63,4 +63,4 @@ const FormsContainer: React.FC = (): JSX.Element => {
   );
 };
 
-export default FormsContainer;
+export default Forms;

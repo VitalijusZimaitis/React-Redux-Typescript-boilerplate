@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { routes } from "../Routes";
+import { routes } from "../../Routes";
 import { useTranslation } from "react-i18next";
 
 const Home: React.FC = (): JSX.Element => {

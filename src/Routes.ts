@@ -1,13 +1,17 @@
 import { RouteType } from "./types/Route";
 import * as React from "react";
 const Home = React.lazy(
-  () => import(/* webpackChunkName: "HomePage" */ "./components/Home")
+  () => import(/* webpackChunkName: "HomePage" */ "./containers/Pages/Home")
 );
-const FormsContainer = React.lazy(() => import("./containers/FormsContainer"));
-const UserListContainer = React.lazy(
-  () => import("./containers/UserListContainer")
+const Forms = React.lazy(
+  () => import(/* webpackChunkName: "Forms" */ "./containers/Pages/Forms")
 );
-const NotFound = React.lazy(() => import("./containers/Error/NotFound"));
+const Users = React.lazy(
+  () => import(/* webpackChunkName: "Users" */ "./containers/Pages/Users")
+);
+const NotFound = React.lazy(
+  () => import(/* webpackChunkName: "NotFound" */ "./containers/Error/NotFound")
+);
 
 export const routes = {
   home: "/",
@@ -25,12 +29,12 @@ export const Routes: RouteType = {
   forms: {
     path: routes.forms,
     exact: true,
-    component: FormsContainer,
+    component: Forms,
   },
   userList: {
     path: routes.userList,
     exact: true,
-    component: UserListContainer,
+    component: Users,
   },
   test: {
     path: "/test",
@@ -43,7 +47,7 @@ export const Routes: RouteType = {
     path: "/authorized",
     authorized: true,
     exact: true,
-    component: UserListContainer,
+    component: Users,
   },
   notFound: {
     path: "*",

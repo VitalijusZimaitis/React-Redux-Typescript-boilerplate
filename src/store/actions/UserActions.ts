@@ -13,6 +13,8 @@ export const fetchUsersList = () => {
     true,
     null,
     null,
-    { test: "Test message for additional data" }
+    {
+      test: "Test message for additional data",
+    }
   );
 };
