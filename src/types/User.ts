@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { BaseAppState } from "./App";
-import { BaseAsyncAction } from "./Thunk";
+import { BaseAction } from "./Thunk";
 
 export interface TApiUserEntity {
   id: number;
@@ -27,12 +27,12 @@ export enum UserGetAll {
 }
 
 export type TUserGetAllAction =
-  | BaseAsyncAction<UserGetAll.REQUEST>
-  | BaseAsyncAction<
+  | BaseAction<UserGetAll.REQUEST>
+  | BaseAction<
       UserGetAll.SUCCESS,
       AxiosResponse<Array<TApiUserEntity>>,
       { test: string }
     >
-  | BaseAsyncAction<UserGetAll.FAILED>;
+  | BaseAction<UserGetAll.FAILED>;
 
 export type TUserActions = TUserGetAllAction;
