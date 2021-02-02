@@ -11,7 +11,7 @@ interface IUserListProps {
 const UserList: React.FC<IUserListProps> = (props): JSX.Element => {
   return (
     <ul>
-      {props.users.map((user: TApiUserEntity) => {
+      {props.users?.map((user: TApiUserEntity) => {
         return (
           <li key={user.id}>
             <Link to={reverse(routes.userProfile, { id: user.id })}>
@@ -22,6 +22,10 @@ const UserList: React.FC<IUserListProps> = (props): JSX.Element => {
       })}
     </ul>
   );
+};
+
+UserList.defaultProps = {
+  users: [],
 };
 
 export default UserList;

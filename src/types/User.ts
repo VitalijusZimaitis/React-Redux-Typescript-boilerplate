@@ -21,9 +21,9 @@ export const initialUserState: TUserState = {
 };
 
 export enum UserGetAll {
-  REQUEST = "USER_GET_ALL_REQUEST",
-  SUCCESS = "USER_GET_ALL_SUCCESS",
-  FAILED = "USER_GET_ALL_FAILED",
+  REQUEST = "users/GET_ALL_REQUEST",
+  SUCCESS = "users/GET_ALL_SUCCESS",
+  FAILED = "users/GET_ALL_FAILED",
 }
 
 export type TUserGetAllAction =
