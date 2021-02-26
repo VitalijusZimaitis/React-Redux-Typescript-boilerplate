@@ -11,7 +11,7 @@ import { usersReducer } from "./reducers/UserReducer";
 import { requestReducer } from "./reducers/RequestReducer";
 import { ErrorHandler } from "./middlewares/ErrorHandler";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { persistConfig } from "../lib/redux-persist";
 
 export interface IAppState {
   userState: TUserState;
@@ -21,12 +21,6 @@ export interface IAppState {
 const initialAppState: DeepPartial<IAppState> = {
   userState: undefined,
   appState: {},
-};
-
-const persistConfig = {
-  key: "root",
-  storage,
-  blacklist: ["appState"],
 };
 
 const rootReducer = combineReducers<IAppState>({

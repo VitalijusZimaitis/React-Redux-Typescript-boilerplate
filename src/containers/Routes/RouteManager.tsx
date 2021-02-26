@@ -25,7 +25,7 @@ const RouteManager: React.FC<RouteManageProps> = ({ routes }): JSX.Element => {
         const fallback: NonNullable<ReactNode> | null = "Loading...";
 
         if (redirect) {
-          return <Redirect to={redirectPath} />;
+          return <Redirect key={key} to={redirectPath} />;
         }
 
         if (authorized && !redirect) {

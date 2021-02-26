@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.2",
+    "@sentry/react": "^6.2.0",
     "axios": "^0.21.1",
     "axios-auth-refresh": "^2.2.7",
     "formik": "^2.2.6",
