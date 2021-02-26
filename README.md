@@ -9,6 +9,7 @@
 - [Axios](https://github.com/axios/axios)
 - [Formik](https://formik.org/)
 - [Redux Persist](https://github.com/rt2zz/redux-persist)
+- [Material UI](https://material-ui.com/)
 
 ## Available Scripts
 
