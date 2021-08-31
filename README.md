@@ -3,13 +3,12 @@
 ## Additional libraries
 - [Redux](https://redux.js.org/)
 - [Redux Thunk](https://github.com/reduxjs/redux-thunk)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
 - [i18next](https://www.i18next.com/)
 - [React Router](https://reactrouter.com/)
 - [Lodash](https://lodash.com/)
 - [Axios](https://github.com/axios/axios)
 - [Formik](https://formik.org/)
-- [Redux Persist](https://github.com/rt2zz/redux-persist)
-- [Material UI](https://material-ui.com/)
 
 ## Available Scripts
 
@@ -23,29 +22,6 @@ Watches resource folder for changes
 
 Building the app for deployment
 
-## Development
-
-All request made to and api endpoint must have redux action with given suffixes: `_REQUEST`, `_SUCCESS`, `_FAILED`. In example:
-
-```
-export enum UserGetAll {
-   REQUEST = "USER_GET_ALL_REQUEST",
-   SUCCESS = "USER_GET_ALL_SUCCESS",
-   FAILED = "USER_GET_ALL_FAILED",
-}
-```
-
-Simple app actions should not use those suffixes, since they are mostly for tracking app loading state.
-
-## Formatting
-
-Project must be formatted with [Prettier](https://prettier.io/). Add following line to: `package.json`
-
-```
-"prettier": {
-   "tabWidth": 2
-}
-```
 
 ## Cheatsheet
 
