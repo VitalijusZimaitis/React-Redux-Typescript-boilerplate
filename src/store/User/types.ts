@@ -10,7 +10,7 @@ export interface IApiUserEntity {
 }
 
 export interface IUserState extends IBaseAppState {
-  readonly data: Array<IApiUserEntity>;
+  data: Array<IApiUserEntity>;
 }
 
 export const initialUserState: IUserState = {
