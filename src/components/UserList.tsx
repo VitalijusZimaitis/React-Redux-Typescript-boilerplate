@@ -1,31 +1,22 @@
-import * as React from "react";
-import { TApiUserEntity } from "../types/User";
-import { Link } from "react-router-dom";
-import { reverse } from "named-urls";
-import { routes } from "../Routes";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { reverse } from 'named-urls';
+
+import { routes } from '../Routes';
+import { IApiUserEntity } from '../store/User/types';
 
 interface IUserListProps {
-  users: Array<TApiUserEntity>;
+  users: Array<IApiUserEntity>;
 }
 
-const UserList: React.FC<IUserListProps> = (props): JSX.Element => {
-  return (
-    <ul>
-      {props.users?.map((user: TApiUserEntity) => {
-        return (
-          <li key={user.id}>
-            <Link to={reverse(routes.userProfile, { id: user.id })}>
-              {user.name}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
-
-UserList.defaultProps = {
-  users: [],
-};
+const UserList: React.FC<IUserListProps> = ({ users }): JSX.Element => (
+  <ul>
+    {users?.map((user) => (
+      <li key={user.id}>
+        <Link to={reverse(routes.userProfile, { id: user.id })}>{user.name}</Link>
+      </li>
+    ))}
+  </ul>
+);
 
 export default UserList;

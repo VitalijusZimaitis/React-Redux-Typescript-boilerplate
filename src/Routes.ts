@@ -1,26 +1,28 @@
-import { RouteType } from "./types/Route";
-import * as React from "react";
+import * as React from 'react';
+
+import { TRouteType } from './containers/Routes/RouteManager';
+
 const Home = React.lazy(
-  () => import(/* webpackChunkName: "HomePage" */ "./containers/Pages/Home")
+  () => import(/* webpackChunkName: "HomePage" */ './pages/Home'),
 );
 const Forms = React.lazy(
-  () => import(/* webpackChunkName: "Forms" */ "./containers/Pages/Forms")
+  () => import(/* webpackChunkName: "Forms" */ './pages/Forms'),
 );
 const Users = React.lazy(
-  () => import(/* webpackChunkName: "Users" */ "./containers/Pages/Users")
+  () => import(/* webpackChunkName: "Users" */ './pages/Users'),
 );
 const NotFound = React.lazy(
-  () => import(/* webpackChunkName: "NotFound" */ "./containers/Error/NotFound")
+  () => import(/* webpackChunkName: "NotFound" */ './containers/Error/NotFound'),
 );
 
 export const routes = {
-  home: "/",
-  userList: "/users",
-  userProfile: "/user/:id",
-  forms: "/forms",
+  home: '/',
+  userList: '/users',
+  userProfile: '/user/:id',
+  forms: '/forms',
 };
 
-export const Routes: RouteType = {
+export const Routes: TRouteType = {
   home: {
     path: routes.home,
     exact: true,
@@ -37,20 +39,18 @@ export const Routes: RouteType = {
     component: Users,
   },
   test: {
-    path: "/test",
+    path: '/test',
     exact: true,
-    redirect: () => {
-      return `/`;
-    },
+    redirect: () => '/',
   },
   authorized: {
-    path: "/authorized",
+    path: '/authorized',
     authorized: true,
     exact: true,
     component: Users,
   },
   notFound: {
-    path: "*",
+    path: '*',
     exact: false,
     component: NotFound,
   },

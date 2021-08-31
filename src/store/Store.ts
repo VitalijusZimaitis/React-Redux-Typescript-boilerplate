@@ -1,45 +1,15 @@
-import {
-  applyMiddleware,
-  combineReducers,
-  createStore,
-  DeepPartial,
-} from "redux";
-import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
-import { TUserState } from "../types/User";
-import { usersReducer } from "./reducers/UserReducer";
-import { requestReducer } from "./reducers/RequestReducer";
-import { ErrorHandler } from "./middlewares/ErrorHandler";
-import { persistStore, persistReducer } from "redux-persist";
-import { persistConfig } from "../lib/redux-persist";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import thunk from 'redux-thunk';
 
-export interface IAppState {
-  userState: TUserState;
-  appState: any;
-}
+import { slice as UserSlice } from './User/slice';
 
-const initialAppState: DeepPartial<IAppState> = {
-  userState: undefined,
-  appState: {},
-};
-
-const rootReducer = combineReducers<IAppState>({
-  userState: usersReducer,
-  appState: requestReducer,
+const reducers = combineReducers({
+  userState: UserSlice.reducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const store = configureStore({
+  reducer: reducers,
+  middleware: [thunk],
+});
 
-export function endReducer<T>(state: T, action: never): T {
-  return state;
-}
-
-const store = createStore(
-  persistedReducer,
-  initialAppState,
-  composeWithDevTools(applyMiddleware(thunk, ErrorHandler))
-);
-
-const persistor = persistStore(store);
-
-export { store, persistor };
+export { store };

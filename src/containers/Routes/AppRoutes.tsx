@@ -1,9 +1,8 @@
-import * as React from "react";
-import RouteManager from "./RouteManager";
-import { Routes } from "../../Routes";
+import React from 'react';
 
-const AppRoutes: React.FC = (): JSX.Element => {
-  return <RouteManager routes={Routes} />;
-};
+import { Routes } from '../../Routes';
+import RouteManager from './RouteManager';
+
+const AppRoutes: React.FC = (): JSX.Element => <RouteManager routes={Routes} />;
 
 export default AppRoutes;

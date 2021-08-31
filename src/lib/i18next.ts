@@ -1,7 +1,7 @@
-import i18n from "i18next";
-import XHR from "i18next-xhr-backend";
+import i18n from 'i18next';
+import XHR from 'i18next-xhr-backend';
 
-const language = i18n.language || "en-US";
+const language = i18n.language || 'en-US';
 
 // const resources = {
 //   en: {
@@ -10,10 +10,10 @@ const language = i18n.language || "en-US";
 // };
 
 const backendOptions = {
-  type: "backend",
+  type: 'backend',
   crossDomain: false,
   allowMultiLoading: false,
-  loadPath: `your-backend-api/?locale_code={{lng}}`,
+  loadPath: 'your-backend-api/?locale_code={{lng}}',
 };
 
 const options: any = {
@@ -21,8 +21,8 @@ const options: any = {
   debug: true,
   lng: language,
   fallbackLng: language,
-  ns: ["translations"],
-  defaultNS: "translations",
+  ns: ['translations'],
+  defaultNS: 'translations',
   saveMissing: true,
   updateMissing: true,
 
@@ -32,7 +32,7 @@ const options: any = {
   },
 };
 
-options["backend"] = backendOptions;
+options.backend = backendOptions;
 
 i18n.use(XHR).init(options);
 

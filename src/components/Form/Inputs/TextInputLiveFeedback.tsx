@@ -1,6 +1,6 @@
-import * as React from "react";
-import { useField } from "formik";
-import { TextField, TextFieldProps } from "@material-ui/core";
+import React from 'react';
+import { TextField, TextFieldProps } from '@material-ui/core';
+import { useField } from 'formik';
 
 type FormikTextFieldProps = {
   formikKey: string;
@@ -14,8 +14,7 @@ const TextInputLiveFeedback = ({
   const [field, meta] = useField(formikKey);
   const [didFocus, setDidFocus] = React.useState(false);
   const handleFocus = () => setDidFocus(true);
-  const showFeedback =
-    (didFocus && field.value.trim().length > 2) || meta.touched;
+  const showFeedback = (didFocus && field.value.trim().length > 2) || meta.touched;
 
   return (
     <TextField

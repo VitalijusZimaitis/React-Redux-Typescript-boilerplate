@@ -1,23 +1,25 @@
-import * as React from "react";
-import "./assets/styles/css/App.css";
-import { BrowserRouter } from "react-router-dom";
-import ErrorBoundary from "./ErrorBoundary";
-import i18n from "i18next";
-import AppRoutes from "./containers/Routes/AppRoutes";
-import * as Sentry from "@sentry/react";
-import ErrorPage from "./containers/Error/ErrorPage";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { BrowserRouter } from 'react-router-dom';
+import * as Sentry from '@sentry/react';
+import i18n from 'i18next';
+
+import ErrorPage from './containers/Error/ErrorPage';
+import AppRoutes from './containers/Routes/AppRoutes';
+import ErrorBoundary from './ErrorBoundary';
+
+import './assets/styles/css/App.css';
 
 const App: React.FC = () => {
   const { t } = useTranslation();
 
   return (
     <Sentry.ErrorBoundary
-      fallback={<ErrorPage message={t("internal.server.error")} />}
+      fallback={<ErrorPage message={t('internal.server.error')} />}
     >
       <ErrorBoundary>
         <BrowserRouter>
-          <button onClick={() => i18n.changeLanguage("en-GB")}>
+          <button type="button" onClick={() => i18n.changeLanguage('en-GB')}>
             Change language
           </button>
           <hr />

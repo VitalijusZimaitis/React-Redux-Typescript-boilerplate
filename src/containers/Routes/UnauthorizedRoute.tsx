@@ -1,6 +1,5 @@
-import * as React from "react";
-import { Route, RouteProps } from "react-router-dom";
-import { ReactNode, Suspense } from "react";
+import React, { ReactNode, Suspense } from 'react';
+import { Route, RouteProps } from 'react-router-dom';
 
 interface IUnauthorizedRouteProps extends RouteProps {
   component: React.ComponentClass | React.FC;
@@ -11,9 +10,10 @@ const UnauthorizedRoute: React.FC<IUnauthorizedRouteProps> = (
   props,
   ...rest
 ): JSX.Element => {
+  const { fallback, component, path } = props;
   return (
-    <Suspense fallback={props.fallback}>
-      <Route component={props.component} exact path={props.path} {...rest} />
+    <Suspense fallback={fallback}>
+      <Route component={component} exact path={path} {...rest} />
     </Suspense>
   );
 };
