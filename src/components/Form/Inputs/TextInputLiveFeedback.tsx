@@ -6,11 +6,7 @@ type FormikTextFieldProps = {
   formikKey: string;
 } & TextFieldProps;
 
-const TextInputLiveFeedback = ({
-  label,
-  formikKey,
-  ...props
-}: FormikTextFieldProps) => {
+const TextInputLiveFeedback = ({ label, formikKey, ...props }: FormikTextFieldProps) => {
   const [field, meta] = useField(formikKey);
   const [didFocus, setDidFocus] = React.useState(false);
   const handleFocus = () => setDidFocus(true);

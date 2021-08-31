@@ -14,9 +14,7 @@ const App: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <Sentry.ErrorBoundary
-      fallback={<ErrorPage message={t('internal.server.error')} />}
-    >
+    <Sentry.ErrorBoundary fallback={<ErrorPage message={t('internal.server.error')} />}>
       <ErrorBoundary>
         <BrowserRouter>
           <button type="button" onClick={() => i18n.changeLanguage('en-GB')}>

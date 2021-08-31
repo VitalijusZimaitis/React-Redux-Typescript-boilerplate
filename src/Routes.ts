@@ -2,15 +2,9 @@ import * as React from 'react';
 
 import { TRouteType } from './containers/Routes/RouteManager';
 
-const Home = React.lazy(
-  () => import(/* webpackChunkName: "HomePage" */ './pages/Home'),
-);
-const Forms = React.lazy(
-  () => import(/* webpackChunkName: "Forms" */ './pages/Forms'),
-);
-const Users = React.lazy(
-  () => import(/* webpackChunkName: "Users" */ './pages/Users'),
-);
+const Home = React.lazy(() => import(/* webpackChunkName: "HomePage" */ './pages/Home'));
+const Forms = React.lazy(() => import(/* webpackChunkName: "Forms" */ './pages/Forms'));
+const Users = React.lazy(() => import(/* webpackChunkName: "Users" */ './pages/Users'));
 const NotFound = React.lazy(
   () => import(/* webpackChunkName: "NotFound" */ './containers/Error/NotFound'),
 );
