@@ -9,12 +9,11 @@ export interface IApiUserEntity {
   website: string;
 }
 
-export interface IUserState extends IBaseAppState {
-  data: Array<IApiUserEntity>;
-}
+export interface IUserState extends IBaseAppState<IApiUserEntity> {}
 
 export const initialUserState: IUserState = {
-  data: [],
-  status: EStateStatus.IDLE,
+  ids: [],
+  entities: {},
   error: null,
+  status: EStateStatus.IDLE,
 };

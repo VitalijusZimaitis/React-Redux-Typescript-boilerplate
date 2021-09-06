@@ -6,6 +6,7 @@ import { routes } from '../Routes';
 
 const Home: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
+
   return (
     <>
       <h1>
