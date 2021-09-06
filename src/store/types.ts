@@ -12,7 +12,7 @@ export enum EStateStatus {
   FAILED = 'failed',
 }
 
-export interface IBaseAppState<T> extends EntityState<T>{
+export interface IBaseAppState<T> extends EntityState<T> {
   readonly status: EStateStatus;
   readonly error: string | null;
 }
