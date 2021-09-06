@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { slice as UserSlice } from './User/slice';
 
 const reducers = combineReducers({
-  userState: UserSlice.reducer,
+  users: UserSlice.reducer,
 });
 
 const store = configureStore({

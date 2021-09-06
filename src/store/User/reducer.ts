@@ -13,6 +13,7 @@ const thunkReducer = (builder: ActionReducerMapBuilder<IUserState>) => {
       state.status = EStateStatus.LOADING;
     })
     .addCase(getUsers.fulfilled, (state, { payload }) => {
+      state.status = EStateStatus.IDLE;
       usersAdapter.setAll(state, payload);
     })
     .addCase(getUsers.rejected, (state) => {

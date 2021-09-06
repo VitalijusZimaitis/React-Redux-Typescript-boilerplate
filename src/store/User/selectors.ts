@@ -7,4 +7,4 @@ export const {
   selectEntities: selectUserEntities,
   selectAll: selectAllUsers,
   selectTotal: selectTotalUsers,
-} = usersAdapter.getSelectors((state: IAppState) => state.userState);
+} = usersAdapter.getSelectors((state: IAppState) => state.users);
