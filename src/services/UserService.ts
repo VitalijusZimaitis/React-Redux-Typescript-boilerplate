@@ -1,9 +1,15 @@
-import { ApiRoutes } from '../constants/api';
-import { IApiUserEntity } from '../store/User/types';
-import { AxiosService } from './AxiosService';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export class UserService {
-  public static async fetchAllUsers() {
-    return AxiosService.apiCall<null, Array<IApiUserEntity>>('GET', ApiRoutes.allUsers());
-  }
-}
+import { IApiUserEntity } from '../store/types/User';
+
+export const userApi = createApi({
+  reducerPath: 'usersApi',
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_API_URL }),
+  endpoints: (builder) => ({
+    getUsers: builder.query<Array<IApiUserEntity>, {}>({
+      query: () => '/users',
+    }),
+  }),
+})
+
+export const { useGetUsersQuery } = userApi;

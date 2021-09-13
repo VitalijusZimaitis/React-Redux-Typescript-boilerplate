@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { reverse } from 'named-urls';
 
 import { routes } from '../Routes';
-import { IApiUserEntity } from '../store/User/types';
+import { IApiUserEntity } from '../store/types/User';
 
 interface IUserListProps {
-  users: Array<IApiUserEntity>;
+  users?: Array<IApiUserEntity>;
 }
 
 const UserList: React.FC<IUserListProps> = ({ users }): JSX.Element => (
