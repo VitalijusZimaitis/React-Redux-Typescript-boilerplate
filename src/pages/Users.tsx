@@ -6,11 +6,7 @@ import { routes } from '../Routes';
 import { useGetUsersQuery } from '../services/UserService';
 
 const Users: React.FC = (): JSX.Element => {
-  const { data, isLoading, isFetching } = useGetUsersQuery({}, {
-    pollingInterval: 5000,
-    refetchOnMountOrArgChange: true,
-    skip: false,
-  });
+  const { data, isLoading, isFetching } = useGetUsersQuery();
 
   return (
     <>
