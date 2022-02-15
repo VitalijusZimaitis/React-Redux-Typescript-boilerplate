@@ -5,11 +5,7 @@ import { useTypedTranslations } from 'hooks/useTypedTranslation';
 const Home = () => {
   const { t } = useTypedTranslations();
 
-  return (
-    <>
-      {t('welcome')}
-    </>
-  );
+  return <>{t('welcome')}</>;
 };
 
 export default Home;

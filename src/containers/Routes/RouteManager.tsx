@@ -24,7 +24,13 @@ const RouteManager: React.FC<RouteManageProps> = ({ routes }): JSX.Element => (
       const redirectPath = redirect ? redirect(true) : '';
 
       if (redirect) {
-        return <Route element={<Navigate key={key} to={redirectPath} />} path={path} key={key} />;
+        return (
+          <Route
+            element={<Navigate key={key} to={redirectPath} />}
+            path={path}
+            key={key}
+          />
+        );
       }
 
       if (authorized && !redirect) {

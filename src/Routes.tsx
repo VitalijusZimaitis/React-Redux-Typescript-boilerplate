@@ -5,9 +5,7 @@ import { withSuspense } from './hoc/withSuspense';
 
 const Home = withSuspense(lazy(() => import('pages/Home')));
 const Login = withSuspense(lazy(() => import('pages/Auth/Login')));
-const NotFound = withSuspense(lazy(
-  () => import('pages/Error/NotFound'),
-));
+const NotFound = withSuspense(lazy(() => import('pages/Error/NotFound')));
 
 export const routes = {
   home: '/',

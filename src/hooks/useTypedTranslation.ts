@@ -9,9 +9,7 @@ type Join<S1, S2> = S1 extends string
   : never;
 
 export type Paths<T> = {
-  [K in keyof T]: T[K] extends Record<string, unknown>
-    ? Join<K, Paths<T[K]>>
-    : K;
+  [K in keyof T]: T[K] extends Record<string, unknown> ? Join<K, Paths<T[K]>> : K;
 }[keyof T];
 
 type TranslationKeys = Paths<typeof translations>;
