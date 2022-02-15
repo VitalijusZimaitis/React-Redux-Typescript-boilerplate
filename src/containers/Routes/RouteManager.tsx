@@ -1,8 +1,7 @@
-import React, { ReactNode } from 'react';
-import { Redirect, RouteProps, Switch } from 'react-router-dom';
+import React from 'react';
+import { Navigate, Route, RouteProps, Routes } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
-import UnauthorizedRoute from './UnauthorizedRoute';
 
 export interface IRoute extends RouteProps {
   redirect?: (hasRedirect: boolean) => string;
@@ -18,46 +17,27 @@ type RouteManageProps = {
 };
 
 const RouteManager: React.FC<RouteManageProps> = ({ routes }): JSX.Element => (
-  <Switch>
+  <Routes>
     {Object.entries(routes).map(([key, route]) => {
-      const {
-        path,
-        exact = false,
-        redirect = null,
-        component: Cmp,
-        authorized = false,
-      } = route;
+      const { path, redirect = null, element, authorized = false } = route;
 
       const redirectPath = redirect ? redirect(true) : '';
-      const fallback: NonNullable<ReactNode> | null = 'Loading...';
 
       if (redirect) {
-        return <Redirect key={key} to={redirectPath} />;
+        return <Route element={<Navigate key={key} to={redirectPath} />} path={path} key={key} />;
       }
 
       if (authorized && !redirect) {
         return (
-          <PrivateRoute
-            fallback={fallback}
-            key={key}
-            path={path}
-            exact={exact}
-            component={Cmp as React.FC}
-          />
+          <Route element={<PrivateRoute />} path={path} key={key}>
+            <Route element={element} path={path} key={key} />
+          </Route>
         );
       }
 
-      return (
-        <UnauthorizedRoute
-          fallback={fallback}
-          key={key}
-          path={path}
-          exact={exact}
-          component={Cmp as React.FC}
-        />
-      );
+      return <Route element={element} path={path as string} key={key} />;
     })}
-  </Switch>
+  </Routes>
 );
 
 export default RouteManager;

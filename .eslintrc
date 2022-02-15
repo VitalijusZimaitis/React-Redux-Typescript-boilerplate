@@ -1,7 +1,21 @@
 {
   "extends": ["react-app", "airbnb"],
-  "plugins": ["jsx-a11y", "prettier", "simple-import-sort"],
-  "ignorePatterns": ["service-worker.ts", "serviceWorkerRegistration.ts", "**/*.d.ts"],
+  "plugins": ["prettier", "simple-import-sort"],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "ignorePatterns": [
+    "serviceWorker.js",
+    "service-worker.ts",
+    "serviceWorkerRegistration.ts",
+    "**/*.d.ts",
+    "**/*.config",
+    "**/*.js",
+    "**/mui-theme.ts",
+    "**/theme.ts"
+  ],
   "globals": {
     "React": true,
     "google": true,
@@ -17,11 +31,14 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
       }
     }
   },
   "rules": {
+    "react/no-danger": "off",
+    "no-unused-vars": "off",
     "import/no-named-as-default": "off",
     "no-shadow": "off",
     "no-plusplus": "off",
@@ -31,6 +48,8 @@
     "import/no-cycle": "off",
     "import/extensions": "off",
     "import/no-anonymous-default-export": "error",
+    "max-len": "off",
+    "linebreak-style": 0,
     "simple-import-sort/imports": [
       "error",
       {
@@ -44,10 +63,10 @@
           ["^react", "^@?\\w"],
           // Internal packages.
           [
-            "^(@|@store|@resources|@components|@constants|@helpers|@hooks|@lib|vendored-lib)(/.*|$)"
+            "^(@|@pages|@services|@store|@containers|@components|@constants|@helpers|@hooks|@lib|@assets|vendored-lib)(/.*|$)"
           ],
           [
-            "^(@|store|resources|components|constants|helpers|hooks|lib|vendored-lib)(/.*|$)"
+            "^(@|pages|services|store|containers|components|constants|helpers|hooks|lib|vendored-lib)(/.*|$)"
           ],
           // Side effect imports.
           ["^\\u0000"],
@@ -113,6 +132,14 @@
         "interfaces": ["field", "constructor", "method"]
       }
     ],
-    "@typescript-eslint/no-var-requires": "off"
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ]
   }
 }

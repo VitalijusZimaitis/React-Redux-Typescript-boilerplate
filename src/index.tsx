@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import * as Sentry from '@sentry/react';
+import { BrowserTracing } from '@sentry/tracing';
 
 import i18n from './lib/i18next';
 import { store } from './store/Store';
@@ -13,6 +14,8 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 Sentry.init({
   dsn: process.env.REACT_APP_SENTRY_DSN,
   environment: process.env.REACT_APP_ENVIRONMENT,
+  integrations: [new BrowserTracing()],
+  tracesSampleRate: 1.0,
 });
 
 ReactDOM.render(
