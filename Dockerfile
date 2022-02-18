@@ -1,15 +1,22 @@
-FROM node:14-alpine
-
+FROM node:14 as build-stage
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
-COPY package.json /app
-COPY yarn.lock /app
+COPY package.json ./
+COPY yarn.lock ./
 
+RUN npm install yarn
+RUN rm -rf node_modules
 RUN yarn install
 
-COPY . /app
+COPY . ./
 
-EXPOSE 80:3000
+RUN yarn build
 
-CMD [ "yarn", "start" ]
+FROM nginx:1.17
+
+COPY --from=build-stage /app/build/ /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d
+
+EXPOSE 80:80
