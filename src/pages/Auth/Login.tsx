@@ -1,5 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
-const Login = () => <>Login page</>;
+const Login = () => {
+  const { t } = useTranslation();
+
+  return <>{t('login')}</>;
+};
 
 export default Login;
