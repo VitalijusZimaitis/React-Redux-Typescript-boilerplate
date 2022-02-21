@@ -47,6 +47,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: BoilerplateClusterService
+          service: BoilerplateService
           cluster: BoilerplateCluster
           wait-for-service-stability: true
