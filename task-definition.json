@@ -16,7 +16,7 @@
       ],
       "command": null,
       "linuxParameters": null,
-      "cpu": 0,
+      "cpu": 1,
       "environment": [],
       "resourceRequirements": null,
       "ulimits": null,
@@ -29,7 +29,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "015571360183.dkr.ecr.eu-central-1.amazonaws.com/react-redux-typescript-boilerplate",
+      "image": "015571360183.dkr.ecr.eu-central-1.amazonaws.com/react-redux-typescript-boilerplate:latest",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -56,7 +56,7 @@
     "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:eu-central-1:015571360183:task-definition/ECSReactAppDemoTask:9",
+  "taskDefinitionArn": "arn:aws:ecs:eu-central-1:015571360183:task-definition/ECSReactAppDemoTask:13",
   "family": "ECSReactAppDemoTask",
   "requiresAttributes": [
     {
@@ -72,8 +72,8 @@
   ],
   "networkMode": null,
   "runtimePlatform": null,
-  "cpu": "1024",
-  "revision": 9,
+  "cpu": "128",
+  "revision": 13,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
